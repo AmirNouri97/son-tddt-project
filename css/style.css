@@ -44,8 +44,12 @@
   font-family: "Vazir";
 }
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: var(--color-theme-light);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 /*header*/
 /*navbar*/
@@ -115,8 +119,8 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  width: 55%;
-  height: 40px;
+  width: 40%;
+  height: 32px;
   padding: 12px 6px;
   border-radius: 20px;
   background-color: var(--color-green);
@@ -124,7 +128,7 @@ body {
 }
 .navbar__wrapper__theme-changer span img {
   position: absolute;
-  width: 32px;
+  width: 24px;
   left: 6px;
   border-radius: 50%;
   background-color: var(--color-lamp);
@@ -136,4 +140,88 @@ body {
 }
 .bg-white {
   background-color: var(--color-white);
+}
+/*main*/
+main {
+  height: 550px;
+}
+
+/*footer*/
+footer {
+  width: 100vw;
+  height: auto;
+  background-color: var(--color-white);
+  box-shadow: 0 0 2px 1px var(--color-gray-light);
+  backdrop-filter: blur(10px);
+}
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__wrapper {
+  height: 90%;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 1400px;
+}
+
+.footer__wrapper__socials ul {
+  padding: 48px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.footer__wrapper__socials ul li {
+  cursor: pointer;
+  background-color: var(--color-theme-light);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+  &:hover {
+    background-color: var(--color-green);
+    transform: scale(1.2);
+  }
+}
+
+.footer__wrapper__socials ul li a img {
+  width: 42px;
+}
+.footer__wrapper__links ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  direction: rtl;
+  padding: 20px 0 40px;
+  gap: 120px;
+}
+.footer__wrapper__links ul li {
+  font-size: 20px;
+  color: var(--color-gray);
+  transition: all 300ms ease;
+  &:hover {
+    color: var(--color-green);
+    transform: scale(1.2);
+  }
+}
+
+.footer__bottom {
+  padding: 10px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__bottom__copy-right {
+  width: 80%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-top: 2px solid var(--color-gray-light);
+  color: var(--color-gray);
 }
