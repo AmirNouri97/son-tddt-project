@@ -133,6 +133,12 @@ body {
   border-radius: 50%;
   background-color: var(--color-lamp);
 }
+/*change url highlight link */
+.nav-link.active {
+  font-weight: 700;
+  color: var(--color-green);
+  text-shadow: 0 -1px 0 var(--color-gray);
+}
 
 /*helper classes*/
 .d-flex {
