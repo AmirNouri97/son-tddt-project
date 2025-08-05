@@ -25,3 +25,115 @@
   src: url(../public/assets/fonts/Vazir/Vazir-Bold-FD-WOL.woff2) format(woff2);
   font-weight: 600;
 }
+:root {
+  --color-white: #fff;
+  --color-white-100: #f0f0f0;
+  --color-black: #000;
+  --color-gray: #676767;
+  --color-gray-dark: #333;
+  --color-gray-light: #c5c5c5;
+  --color-green-dark: #00aa9d;
+  --color-green-light: #00beb0;
+
+  --color-green: #1eb35b;
+  --color-lamp: #f0ef7c;
+  --color-theme-light: #f3f4f6;
+  --color-theme-dark: #111827;
+  --color-theme-dark-box: #64748b;
+
+  font-family: "Vazir";
+}
+body {
+  min-height: 100vh;
+  background-color: var(--color-theme-light);
+}
+/*header*/
+/*navbar*/
+.header__top {
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  box-shadow: 0 0 2px 1px var(--color-gray-light);
+  backdrop-filter: blur(10px);
+}
+.navbar__wrapper {
+  height: 90%;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 1400px;
+}
+.navbar__wrapper__logo {
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+}
+.navbar__wrapper__logo a {
+  width: 70px;
+}
+.navbar__wrapper__links {
+  width: 800px;
+}
+.navbar__links {
+  width: 100%;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 32px;
+}
+.navbar__link {
+  padding: 10px 0px;
+}
+.navbar__link a {
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-black);
+  &::after {
+    content: "";
+    height: 3px;
+    background-color: var(--color-green);
+    width: 0;
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    transition: all 300ms ease;
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+.navbar__wrapper__theme-changer {
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+}
+.navbar__wrapper__theme-changer span {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 55%;
+  height: 40px;
+  padding: 12px 6px;
+  border-radius: 20px;
+  background-color: var(--color-green);
+  cursor: pointer;
+}
+.navbar__wrapper__theme-changer span img {
+  position: absolute;
+  width: 32px;
+  left: 6px;
+  border-radius: 50%;
+  background-color: var(--color-lamp);
+}
+
+/*helper classes*/
+.d-flex {
+  display: flex;
+}
+.bg-white {
+  background-color: var(--color-white);
+}
