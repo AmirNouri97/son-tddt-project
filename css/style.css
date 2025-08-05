@@ -91,7 +91,7 @@ body {
 .navbar__link {
   padding: 10px 0px;
 }
-.navbar__link a {
+.nav-link {
   position: relative;
   text-align: center;
   font-size: 18px;
@@ -109,7 +109,14 @@ body {
   &:hover::after {
     width: 100%;
   }
+  /*change url highlight link */
+  &.active {
+    font-family: "Vazir-bold";
+    font-weight: 600;
+    color: var(--color-green);
+  }
 }
+
 .navbar__wrapper__theme-changer {
   align-items: center;
   justify-content: center;
@@ -132,12 +139,6 @@ body {
   left: 6px;
   border-radius: 50%;
   background-color: var(--color-lamp);
-}
-/*change url highlight link */
-.nav-link.active {
-  font-weight: 700;
-  color: var(--color-green);
-  text-shadow: 0 -1px 0 var(--color-gray);
 }
 
 /*helper classes*/
