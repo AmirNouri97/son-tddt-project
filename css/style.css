@@ -89,7 +89,7 @@ body.dark-theme {
 
   --color-success: #86e49d;
   --color-success-text: #006b21;
-  --color-pending: #fbbf24;
+  --color-pending: #fde047;
   --color-pending-text: #916d03;
   --color-cancelled: #d893a3;
   --color-cancelled-text: #b30021;
@@ -112,16 +112,24 @@ body.dark-theme {
 
   font-family: "Vazir";
 }
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 body {
   display: flex;
   flex-direction: column;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   background-color: var(--color-theme);
   overflow-x: hidden;
   overflow-y: auto;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 /*header*/
+header {
+  position: fixed;
+}
 /*navbar*/
 .header__top {
   width: 100vw;
@@ -223,16 +231,18 @@ body {
 }
 /*main*/
 main {
-  height: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
+  padding: 100px 32px 100px;
 }
 
 /*footer*/
 footer {
-  position: fixed;
-  bottom: 0;
+  /* position: fixed;
+  bottom: 0; */
+  padding: 16px;
   width: 100vw;
   height: auto;
   background-color: var(--color-theme-wrapper);
