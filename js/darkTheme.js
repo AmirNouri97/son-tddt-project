@@ -17,10 +17,8 @@ toggleBtn.addEventListener('click', () => {
       : './public/assets/icons/light-mode.svg'
   };
 
-  // ذخیره در localStorage
   localStorage.setItem('theme', JSON.stringify(themeData));
 
-  // اعمال به DOM
   if (isNowDark) {
     body.classList.add('dark-theme');
   } else {
@@ -30,20 +28,19 @@ toggleBtn.addEventListener('click', () => {
   toggleBtnLogo.style.left = themeData.iconLeft;
   toggleBtnLogo.src = themeData.iconSrc;
 
-  isDark = isNowDark;
 });
 
 const savedThemeData = localStorage.getItem('theme');
 
 if (savedThemeData) {
   const parsedTheme = JSON.parse(savedThemeData);
+  console.log(parsedTheme);
+  
 
   if (parsedTheme.theme === 'dark') {
     body.classList.add('dark-theme');
-    isDark = true;
   } else {
     body.classList.remove('dark-theme');
-    isDark = false;
   }
 
   toggleBtnLogo.style.left = parsedTheme.iconLeft;
