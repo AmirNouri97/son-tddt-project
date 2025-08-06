@@ -25,7 +25,7 @@
   src: url(../public/assets/fonts/Vazir/Vazir-Bold-FD-WOL.woff2) format(woff2);
   font-weight: 600;
 }
-:root {
+/* :root {
   --color-white: #fff;
   --color-white-100: #f0f0f0;
   --color-black: #000;
@@ -58,14 +58,53 @@ body.dark-theme {
   --color-theme-bg-light: #f3f4f6;
   --color-theme-link-active: #0a97d4;
   --color-lamp: #abf9ff;
+} */
+
+:root {
+  --color-shadow: #0000001a;
+  --color-white: #ffffff;
+  --color-white-100: #f8fafc;
+  --color-black: #000000;
+  --color-gray: #6b7280;
+  --color-gray-dark: #374151;
+  --color-gray-light: #d1d5db;
+
+  --color-green-dark: #059669;
+  --color-green-light: #10b981;
+  --color-green: #22c55e;
+
+  --color-theme: #f8fafc;
+  --color-theme-link-text: #059669;
+  --color-theme-wrapper: #ffffff;
+  --color-theme-text: #111827;
+  --color-theme-text-light: #6b7280;
+  --color-theme-bg-light: #f8fafc;
+  --color-theme-link-active: #10b981;
+  --color-lamp: #fde047;
+  font-family: "Vazir";
+}
+
+body.dark-theme {
+  --color-shadow: #d1d5db;
+  --color-theme: #0f172a;
+  --color-theme-link-text: #38bdf8;
+  --color-theme-wrapper: #1e293b;
+  --color-theme-text: #ffffff;
+  --color-gray-light: #94a3b8;
+  --color-theme-text-light: #cbd5e1;
+  --color-theme-bg-light: #94a3b8;
+  --color-theme-link-active: #38bdf8;
+  --color-lamp: #abf9ff;
+  font-family: "Vazir";
 }
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-color: var(--color-theme);
   overflow-x: hidden;
   overflow-y: auto;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 /*header*/
 /*navbar*/
@@ -76,7 +115,8 @@ body {
   align-items: center;
   justify-content: center;
   background-color: var(--color-theme-wrapper);
-  box-shadow: 0 0 2px 1px var(--color-gray-light);
+  /* box-shadow: 0 0 2px 1px var(--color-gray-light); */
+  box-shadow: 0 0 2px 1px var(--color-shadow);
   backdrop-filter: blur(10px);
 }
 .navbar__wrapper {
@@ -155,7 +195,8 @@ body {
   left: 6px;
   border-radius: 50%;
   background-color: var(--color-lamp);
-  transition: left 0.5s ease;
+  /* transition: left 0.5s ease; */
+  transition: left 0.5s ease, transform 0.3s ease;
 }
 
 /*helper classes*/
@@ -177,7 +218,8 @@ footer {
   width: 100vw;
   height: auto;
   background-color: var(--color-theme-wrapper);
-  box-shadow: 0 0 2px 1px var(--color-gray-light);
+  /* box-shadow: 0 0 2px 1px var(--color-gray-light); */
+  box-shadow: 0 0 2px 1px var(--color-shadow);
   backdrop-filter: blur(10px);
 }
 .footer__top {
