@@ -10,8 +10,7 @@ toggleBtn.addEventListener('click', () => {
 
   const themeData = {
     theme: newTheme,
-    iconLeft: isNowDark ? '32px' : '6px',
-    iconRight: isNowDark ? '32px' : '6px',
+    iconLeft: isNowDark ? '32px' : '4px',
     iconSrc: isNowDark 
       ? './public/assets/icons/dark-mode.svg' 
       : './public/assets/icons/light-mode.svg'

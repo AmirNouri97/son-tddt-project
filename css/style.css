@@ -81,7 +81,18 @@ body.dark-theme {
   --color-theme-bg-light: #f8fafc;
   --color-theme-link-active: #10b981;
   --color-lamp: #fde047;
+
+  --color-row-odd-table: #fdfdfd;
+  --color-row-even-table: #e7e7e7;
+
   font-family: "Vazir";
+
+  --color-success: #86e49d;
+  --color-success-text: #006b21;
+  --color-pending: #fbbf24;
+  --color-pending-text: #916d03;
+  --color-cancelled: #d893a3;
+  --color-cancelled-text: #b30021;
 }
 
 body.dark-theme {
@@ -95,6 +106,10 @@ body.dark-theme {
   --color-theme-bg-light: #94a3b8;
   --color-theme-link-active: #38bdf8;
   --color-lamp: #abf9ff;
+
+  --color-row-odd-table: #1e293b;
+  --color-row-even-table: #334155;
+
   font-family: "Vazir";
 }
 body {
@@ -209,6 +224,9 @@ body {
 /*main*/
 main {
   height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*footer*/
