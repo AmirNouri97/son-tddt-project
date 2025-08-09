@@ -51,7 +51,18 @@
     </header>
     <main>
       <section class="table__wrapper">
-        <div class="table__title">لیست محصولات</div>
+        <div class="table__top">
+          <div class="table__title">لیست محصولات</div>
+          <div class="table__qty">
+            <label for="table__qty-id">تعداد در هر صفحه</label>
+            <select name="tableQTY" id="table__qty-id">
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
         <div class="table__main">
           <table>
             <thead>

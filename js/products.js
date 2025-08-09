@@ -1,4 +1,5 @@
 const $ = document;
+
 const products = [
   {
     id: 1,
@@ -271,12 +272,20 @@ const products = [
     inStock: "بله",
   },
 ];
-
+const tableQty = $.querySelector("#table__qty-id");
 const tableBody = $.querySelector("tbody");
 const paginationWrapper = $.querySelector(".pagination__numbers__wrapper ");
 const productsQTY = products.length;
-const itemPerPage = 4;
-const pagesNumber = Math.ceil(productsQTY / itemPerPage);
+let itemPerPage = 2;
+let pagesNumber = Math.ceil(productsQTY / itemPerPage);
+// const itemPerPage = 4;
+tableQty.addEventListener("change", () => {
+  paginationWrapper.innerHTML = "";
+  itemPerPage = tableQty.value;
+  pagesNumber = Math.ceil(productsQTY / itemPerPage);
+  createPageDiv(pagesNumber, paginationWrapper);
+  activePage(1);
+});
 const first = 1;
 const firstPage = $.querySelector(".first__page");
 const nextPage = $.querySelector(".next__page");
