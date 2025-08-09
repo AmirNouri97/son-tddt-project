@@ -103,7 +103,8 @@ tbody tr:nth-child(even) {
 /*pagination*/
 
 .pagination__wrapper {
-  width: 100%;
+  width: 1000px;
+  flex-shrink: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,6 +130,7 @@ tbody tr:nth-child(even) {
   align-items: center;
   direction: ltr;
   column-gap: 24px;
+  max-width: 80%;
 }
 .pagination__number.active {
   color: var(--color-theme-text);
@@ -155,4 +157,32 @@ tbody tr:nth-child(even) {
   /* fill: var(--color-theme-text); */
   width: 20px;
   height: 20px;
+}
+.table__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.table__title {
+  padding: 20px;
+  text-align: start;
+  color: var(--color-theme-text);
+  font-size: 20px;
+  font-weight: 600;
+  width: 80%;
+}
+.table__qty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-theme-text);
+  width: 20%;
+  font-size: 14px;
+}
+.table__qty label {
+  color: var(--color-theme-text);
+}
+.table__qty select {
+  background-color: var(--color-theme-link-active);
+  border-radius: 4px;
 }

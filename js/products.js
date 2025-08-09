@@ -273,10 +273,12 @@ const products = [
   },
 ];
 const tableQty = $.querySelector("#table__qty-id");
+console.log(tableQty);
+
 const tableBody = $.querySelector("tbody");
 const paginationWrapper = $.querySelector(".pagination__numbers__wrapper ");
 const productsQTY = products.length;
-let itemPerPage = 2;
+let itemPerPage = tableQty.value;
 let pagesNumber = Math.ceil(productsQTY / itemPerPage);
 // const itemPerPage = 4;
 tableQty.addEventListener("change", () => {
