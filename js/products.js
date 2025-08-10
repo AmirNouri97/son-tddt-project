@@ -293,6 +293,7 @@ const lastPageBtn = $.querySelector(".last__page");
 console.log(products);
 const sortBtns = $.querySelectorAll(".sort");
 const productsQTY = products.length;
+const availableStateProduct = $.querySelector("#available");
 
 // let itemPerPage = parseInt(tableQty.value, 10) || 5;
 // let itemPerPage = parseInt(tableQty.value, 10) ?? 0;
@@ -316,7 +317,7 @@ function showRows(data = copyProducts) {
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
   const productForCurrentPage = data.slice(startIndex, endIndex);
-
+  console.log(productForCurrentPage);
   productForCurrentPage.forEach(createRow);
 }
 
@@ -489,12 +490,26 @@ function sortbyName(data, field, sortOrder) {
   });
 }
 function sortbyAvailable(data, field, sortOrder) {
-  copyProducts = data.find(data[field] == sortOrder);
+  if (sortOrder === "همه") {
+    copyProducts = unSorted(products);
+    pagesNumber = Math.ceil(copyProducts.length / itemPerPage);
+    currentPage = 1;
+    return copyProducts;
+  }
+
+  let productsStatusArr = data.slice().filter((item) => {
+    return item[field] === sortOrder;
+  });
+  copyProducts = productsStatusArr;
+  pagesNumber = Math.ceil(productsStatusArr.length / itemPerPage);
+  currentPage = 1;
+  return productsStatusArr;
 }
 
 tableQty.addEventListener("change", () => {
   itemPerPage = Number(tableQty.value);
-  pagesNumber = Math.ceil(productsQTY / itemPerPage);
+  // pagesNumber = Math.ceil(productsQTY / itemPerPage);
+  pagesNumber = Math.ceil(copyProducts.length / itemPerPage);
   currentPage = 1;
   renderPagination(1);
   showRows();
@@ -531,7 +546,7 @@ sortBtns.forEach((btn) => {
     } else {
       return 0;
     }
-    console.log(sortOrder);
+    // console.log(sortOrder);
 
     switch (sortName.trim()) {
       case "ردیف":
@@ -551,4 +566,11 @@ sortBtns.forEach((btn) => {
         break;
     }
   });
+});
+availableStateProduct.addEventListener("change", () => {
+  let state = availableStateProduct.value;
+  let filtered = sortbyAvailable(products, "inStock", state);
+  pagesNumber = Math.ceil(filtered.length / itemPerPage);
+  showRows(filtered);
+  renderPagination(1);
 });
