@@ -51,25 +51,126 @@
     </header>
     <main>
       <section class="table__wrapper">
-        <div class="table__title">لیست محصولات</div>
+        <div class="table__top">
+          <div class="table__title">لیست محصولات</div>
+          <div class="table__qty">
+            <label for="table__qty-id">تعداد در هر صفحه</label>
+            <select name="tableQTY" id="table__qty-id">
+              <option value="2">2</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
         <div class="table__main">
           <table>
             <thead>
               <tr>
-                <th>ردیف</th>
+                <th>
+                  ردیف <span data-value="ردیف" class="sort">مرتب نشده</span>
+                </th>
                 <th>عکس محصول</th>
-                <th>نام محصول</th>
-                <th>تعداد</th>
-                <th>قیمت</th>
-                <th>تاریخ</th>
-                <th>موجودی</th>
+                <th>
+                  نام محصول <span data-value="اسم" class="sort">مرتب نشده</span>
+                </th>
+                <th>
+                  تعداد <span data-value="تعداد" class="sort">مرتب نشده</span>
+                </th>
+                <th>
+                  قیمت <span data-value="قیمت" class="sort">مرتب نشده</span>
+                </th>
+                <th>
+                  تاریخ <span data-value="تاریخ" class="sort">مرتب نشده</span>
+                </th>
+                <th>
+                  موجودی
+                  <span data-value="موجودی" class="sort"
+                    ><select name="" id="available">
+                      <option value="همه">همه</option>
+                      <option value="بله">بله</option>
+                      <option value="خیر">خیر</option>
+                      <option value="درحال تامین">درحال تامین</option>
+                    </select></span
+                  >
+                </th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
       </section>
-      <section class="pagination__wrapper"></section>
+      <section class="pagination__wrapper">
+        <div class="pagination__arrow first__page">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M18 17L13 12L18 7M11 17L6 12L11 7"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="pagination__arrow prev__page">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M15 6L9 12L15 18"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="pagination__numbers__wrapper"></div>
+        <div class="pagination__arrow next__page">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M9 6L15 12L9 18"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div class="pagination__arrow last__page">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M6 17L11 12L6 7M13 17L18 12L13 7"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </section>
     </main>
     <footer>
       <section class="footer__top">
