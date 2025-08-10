@@ -8,8 +8,9 @@
       href="/public/assets/images/logo.png"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/dropdown.css" />
     <title>TDDT</title>
   </head>
   <body>
@@ -48,7 +49,117 @@
         </div>
       </section>
     </header>
-    <main></main>
+    <main>
+      <section class="drop-downs__section">
+        <h2 class="drop-downs__section__title">سامانه رزرو بلیط سفر</h2>
+        <div class="drop-downs__section__container">
+          <div class="drop-down__list--simple">
+            <div class="startcity city">لطفا شهر مبدأ را انتخاب نمایید</div>
+            <div class="drop-down__trigger trigger-1">
+              <span class="arrow arrow-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="800px"
+                  height="800px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z"
+                    fill="#000000"
+                  />
+                </svg> </span
+              ><span class="trigger__value simple__trigger__value">
+                شهر مبدأ</span
+              >
+            </div>
+            <ul class="drop-down__menu menu-simple">
+              <li data-value="tehran">تهران</li>
+              <li data-value="esfahan">اصفهان</li>
+              <li data-value="shiraz">شیراز</li>
+              <li data-value="tabriz">تبریز</li>
+              <li data-value="mashhad">مشهد</li>
+              <li data-value="kish">کیش</li>
+            </ul>
+          </div>
+          <div class="drop-down__list--multi-select">
+            <div class="endCity city">لطفا شهرهای مقصد را انتخاب نمایید</div>
+            <div class="drop-down__trigger trigger-2">
+              <span class="arrow arrow-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="800px"
+                  height="800px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z"
+                    fill="#000000"
+                  />
+                </svg>
+              </span>
+              <span class="trigger__value multi__trigger__value">
+                <div class="multi__trigger__value__title">شهرهای مقصد</div>
+                <div class="selected__cities"></div>
+              </span>
+            </div>
+
+            <ul class="drop-down__menu menu-multi">
+              <li data-value="تهران">
+                <input type="checkbox" name="tehran" id="" /> تهران
+              </li>
+              <li data-value="اصفهان">
+                <input type="checkbox" name="esfahan" id="" />اصفهان
+              </li>
+              <li data-value="شیراز">
+                <input type="checkbox" name="shiraz" id="" />شیراز
+              </li>
+              <li data-value="تبریز">
+                <input type="checkbox" name="tabriz" id="" />تبریز
+              </li>
+              <li data-value="مشهد">
+                <input type="checkbox" name="mashhad" id="" />مشهد
+              </li>
+              <li data-value="کیش">
+                <input type="checkbox" name="kish" id="" />کیش
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="drop-downs__section__btn">
+          <button class="drop-down__search__btn">
+            <span
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="800px"
+                height="800px"
+                viewBox="0 -0.5 25 25"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M7.30524 15.7137C6.4404 14.8306 5.85381 13.7131 5.61824 12.4997C5.38072 11.2829 5.50269 10.0233 5.96924 8.87469C6.43181 7.73253 7.22153 6.75251 8.23924 6.05769C10.3041 4.64744 13.0224 4.64744 15.0872 6.05769C16.105 6.75251 16.8947 7.73253 17.3572 8.87469C17.8238 10.0233 17.9458 11.2829 17.7082 12.4997C17.4727 13.7131 16.8861 14.8306 16.0212 15.7137C14.8759 16.889 13.3044 17.5519 11.6632 17.5519C10.0221 17.5519 8.45059 16.889 7.30524 15.7137V15.7137Z"
+                  stroke="#000000"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M11.6702 7.20292C11.2583 7.24656 10.9598 7.61586 11.0034 8.02777C11.0471 8.43968 11.4164 8.73821 11.8283 8.69457L11.6702 7.20292ZM13.5216 9.69213C13.6831 10.0736 14.1232 10.2519 14.5047 10.0904C14.8861 9.92892 15.0644 9.4888 14.9029 9.10736L13.5216 9.69213ZM16.6421 15.0869C16.349 14.7943 15.8741 14.7947 15.5815 15.0879C15.2888 15.381 15.2893 15.8559 15.5824 16.1485L16.6421 15.0869ZM18.9704 19.5305C19.2636 19.8232 19.7384 19.8228 20.0311 19.5296C20.3237 19.2364 20.3233 18.7616 20.0301 18.4689L18.9704 19.5305ZM11.8283 8.69457C12.5508 8.61801 13.2384 9.02306 13.5216 9.69213L14.9029 9.10736C14.3622 7.83005 13.0496 7.05676 11.6702 7.20292L11.8283 8.69457ZM15.5824 16.1485L18.9704 19.5305L20.0301 18.4689L16.6421 15.0869L15.5824 16.1485Z"
+                  fill="#000000"
+                /></svg
+            ></span>
+            جستجو
+          </button>
+        </div>
+      </section>
+    </main>
     <footer>
       <section class="footer__top">
         <div class="footer__wrapper">
@@ -99,4 +210,37 @@
   </body>
   <script src="./js/script.js"></script>
   <script src="./js/darkTheme.js"></script>
+  <script src="./js/dropDown.js"></script>
 </html>
+
+<!--
+  <label for="startCity">لظفا شهر مبدأ را انتخاب نمایید</label>
+            <input
+              type="text"
+              placeholder="شهر مبدأ"
+              name="cityInput"
+              id="cityInput"
+              readonly
+            />
+            <select name="startCity" id="startCity" size="3">
+              <option value="opt1" disabled>شهر ها</option>
+
+              <option value="opt6">تهران</option>
+              <option value="opt2">اصفهان</option>
+              <option value="opt3">شیراز</option>
+              <option value="opt4">مشهد</option>
+              <option value="opt5">کیش</option>
+            </select>
+-->
+<!--
+  <label for="endCity">لظفا شهر مبدأ را انتخاب نمایید</label>
+            <input class="selected__options" readonly></input>
+            <select name="endCity" id="endCity">
+              <option value="opt1" class="neo" disabled>شهر ها</option>
+              <option value="opt6" class="neo">تهران</option>
+              <option value="opt2" class="neo">اصفهان</option>
+              <option value="opt3" class="neo">شیراز</option>
+              <option value="opt4" class="neo">مشهد</option>
+              <option value="opt5" class="neo">کیش</option>
+            </select>
+-->

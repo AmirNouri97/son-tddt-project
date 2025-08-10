@@ -1,0 +1,274 @@
+.drop-downs__section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.drop-downs__section__container {
+  direction: rtl;
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  padding: 16px;
+}
+.drop-downs__section__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+  height: 120px;
+}
+.drop-down__search__btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border: none;
+  outline: none;
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  color: var(--bg-text);
+  transition: all 300ms linear;
+  -webkit-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+}
+.drop-down__search__btn:hover {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.97); /* کمی کوچیک میشه برای حس فشردگی */
+  background-color: rgba(0, 0, 0, 0.02);
+}
+.drop-down__search__btn span {
+  width: 32px;
+  height: 32px;
+}
+.drop-down__search__btn span svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--bg-light);
+}
+
+:root {
+  --bg-light: #f8fafc;
+  --bg-dark: #0f172a;
+  --bg-text: #0f172a;
+  --hover-bg: #bbf7d0;
+  --hover-text: #0f4636;
+  --shadow-light: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+  --shadow-dark: 4px 4px 8px #0b1120, -4px -4px 8px #1e293b;
+  --shadow-inset-light: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+  --shadow-inset-dark: inset 4px 4px 8px #0b1120, inset -4px -4px 8px #1e293b;
+}
+
+/* 💡 تم روشن (پیش‌فرض) */
+body {
+  --bg: var(--bg-light);
+  --shadow: var(--shadow-light);
+  --shadow-inset: var(--shadow-inset-light);
+  color: #0f172a;
+  --bg-text: #0f172a;
+}
+
+/* 🌙 تم تیره */
+body.dark-theme {
+  --bg: var(--bg-dark);
+  --shadow: var(--shadow-dark);
+  --shadow-inset: var(--shadow-inset-dark);
+  color: #f1f5f9;
+  --bg-text: #f1f5f9;
+  --hover-bg: #1e3a8a;
+  --hover-text: #f1f5f9;
+}
+
+.drop-down__list--simple,
+.drop-down__list--multi-select {
+  background: var(--bg);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  height: auto;
+  max-width: 300px;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+}
+
+.drop-down__trigger {
+  z-index: 1;
+  width: 90%;
+  background-color: var(--bg);
+  padding: 14px 18px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease,
+    background-color 0.3s ease;
+  transform: scale(1);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+}
+
+.drop-down__trigger:hover {
+  box-shadow: var(--shadow-inset);
+  transform: scale(0.97); /* کمی کوچیک میشه برای حس فشردگی */
+  background-color: rgba(0, 0, 0, 0.02);
+}
+body.dark-theme .drop-down__trigger:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* در تم تیره کمی روشن‌تر */
+}
+.trigger__value {
+  width: 90%;
+  text-align: right;
+}
+
+.drop-down__menu {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-40px);
+  transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--bg);
+  border-radius: 16px;
+  padding: 12px;
+  width: 90%;
+  box-shadow: var(--shadow);
+  margin-top: 12px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+  -webkit-transition: opacity 0.2s ease, transform 0.3s ease,
+    visiblity 0.2s ease;
+  -moz-transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
+  -ms-transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
+  -o-transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
+}
+.drop-down__menu.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.drop-down__menu li {
+  width: 100%;
+  background-color: var(--bg);
+  padding: 16px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--bg-text);
+  transform: scale(1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.drop-down__menu li:hover {
+  transform: scale(0.95);
+  box-shadow: var(--shadow);
+  background-color: var(--hover-bg);
+  color: var(--hover-text);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  -o-transform: scale(0.95);
+}
+.arrow svg {
+  transition: all 0.3s;
+  width: 32px;
+  height: 32px;
+  -webkit-transform: rotatex(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+.arrow svg path {
+  fill: var(--bg-text);
+}
+.city {
+  padding: 16px 10px;
+}
+
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+.cancel svg path {
+  fill: var(--bg-text);
+}
+
+.newCity {
+  cursor: pointer;
+  display: flex;
+  direction: ltr;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+  padding: 2px 8px;
+  gap: 5px;
+  cursor: default;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease;
+  -moz-transition: background-color 0.3s ease, color 0.3s ease;
+  -ms-transition: background-color 0.3s ease, color 0.3s ease;
+  -o-transition: background-color 0.3s ease, color 0.3s ease;
+}
+.newCity:hover {
+  background-color: var(--border-color);
+}
+.newCity:hover .cancel path {
+}
+.multi__trigger__value {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.menu-multi li input {
+  accent-color: red;
+}
+.multi__trigger__value__title {
+  padding: 6px;
+}
+.selected__cities {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.trigger-2 {
+  align-items: flex-start;
+}
