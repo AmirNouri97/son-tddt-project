@@ -94,7 +94,7 @@ const products = [
   {
     id: 11,
     image: "/public/assets/icons/product-test-img.svg",
-    name: "تبلت",
+    name: "آمبولانس ",
     count: 0,
     price: "28,450,000",
     date: "1404/03/25",
@@ -289,11 +289,11 @@ const firstPageBtn = $.querySelector(".first__page");
 const prevPageBtn = $.querySelector(".prev__page");
 const nextPageBtn = $.querySelector(".next__page");
 const lastPageBtn = $.querySelector(".last__page");
-let isAscendingSorted = true;
 //data
 console.log(products);
-
+const sortBtns = $.querySelectorAll(".sort");
 const productsQTY = products.length;
+
 // let itemPerPage = parseInt(tableQty.value, 10) || 5;
 // let itemPerPage = parseInt(tableQty.value, 10) ?? 0;
 let itemPerPage = Number(tableQty.value) ?? 0;
@@ -439,6 +439,58 @@ function renderPagination(startPage = 1) {
   );
   updateActivePageUI();
 }
+function unSorted(data) {
+  return data.slice();
+}
+function ascendingSorted(valA, valB) {
+  return valA - valB;
+}
+function descendingSorted(valA, valB) {
+  return valB - valA;
+}
+function sortbyNumber(data, field, sortOrder) {
+  if (sortOrder === "مرتب نشده") {
+    return unSorted(products);
+  }
+  copyProducts = data.slice().sort((a, b) => {
+    let valA = a[field];
+    let valB = b[field];
+    console.log(valA, valB);
+
+    if (typeof valA === "string") {
+      valA = Number(valA.replace(/,/g, "")) || Number(valA.replace(/\//g, ""));
+    }
+    if (typeof valB === "string") {
+      valB = Number(valB.replace(/,/g, "")) || Number(valB.replace(/\//g, ""));
+    }
+
+    if (sortOrder === "صعودی") {
+      return ascendingSorted(valA, valB);
+    } else if (sortOrder === "نزولی") {
+      return descendingSorted(valA, valB);
+    }
+  });
+  return copyProducts;
+}
+
+function sortbyName(data, field, sortOrder) {
+  if (sortOrder === "مرتب نشده") {
+    return unSorted(products);
+  }
+  copyProducts = data.slice().sort((a, b) => {
+    let valA = a[field];
+    let valB = b[field];
+    console.log(valA, valB);
+    if (sortOrder === "صعودی") {
+      return a.name.localeCompare(b.name);
+    } else if (sortOrder === "نزولی") {
+      return b.name.localeCompare(a.name);
+    }
+  });
+}
+function sortbyAvailable(data, field, sortOrder) {
+  copyProducts = data.find(data[field] == sortOrder);
+}
 
 tableQty.addEventListener("change", () => {
   itemPerPage = Number(tableQty.value);
@@ -461,50 +513,42 @@ window.addEventListener("load", () => {
   renderPagination(1);
   showRows();
 });
-function sortbyNumber(data, field, isAscendingSorted) {
-  copyProducts = data.slice().sort((a, b) => {
-    let valA = a[field];
-    let valB = b[field];
-    console.log(valA, valB);
 
-    if (typeof valA === "string") {
-      valA = Number(valA.replace(/,/g, "")) || Number(valA.replace(/\//g, ""));
-    }
-    if (typeof valB === "string") {
-      valB = Number(valB.replace(/,/g, "")) || Number(valB.replace(/\//g, ""));
-    }
-    if (isAscendingSorted) {
-      return valB - valA;
-    } else {
-      return valA - valB;
-    }
-  });
-  return copyProducts;
-}
-const sortBtns = $.querySelectorAll(".sort");
 sortBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    let sortOrder = e.target.textContent;
     let sortName = e.target.getAttribute("data-value");
-    // console.log();
+
+    if (sortOrder === "مرتب نشده") {
+      sortOrder = "نزولی";
+      e.target.textContent = "نزولی";
+    } else if (sortOrder === "نزولی") {
+      sortOrder = "صعودی";
+      e.target.textContent = "صعودی";
+    } else if (sortOrder === "صعودی") {
+      sortOrder = "مرتب نشده";
+      e.target.textContent = "مرتب نشده";
+    } else {
+      return 0;
+    }
+    console.log(sortOrder);
+
     switch (sortName.trim()) {
       case "ردیف":
-        showRows(sortbyNumber(copyProducts, "id", isAscendingSorted));
+        showRows(sortbyNumber(copyProducts, "id", sortOrder));
         break;
       case "تعداد":
-        showRows(sortbyNumber(copyProducts, "count", isAscendingSorted));
+        showRows(sortbyNumber(copyProducts, "count", sortOrder));
         break;
       case "قیمت":
-        showRows(sortbyNumber(copyProducts, "price", isAscendingSorted));
+        showRows(sortbyNumber(copyProducts, "price", sortOrder));
         break;
       case "تاریخ":
-        showRows(sortbyNumber(copyProducts, "date", isAscendingSorted));
+        showRows(sortbyNumber(copyProducts, "date", sortOrder));
+        break;
+      case "اسم":
+        showRows(sortbyName(copyProducts, "name", sortOrder));
         break;
     }
   });
 });
-
-function sortName() {
-  copyProducts = products.slice().sort((a, b) => {
-    return a.name.localeCompare(b.name);
-  });
-}
