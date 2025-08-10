@@ -290,6 +290,7 @@ const prevPageBtn = $.querySelector(".prev__page");
 const nextPageBtn = $.querySelector(".next__page");
 const lastPageBtn = $.querySelector(".last__page");
 //data
+let filtered;
 console.log(products);
 const sortBtns = $.querySelectorAll(".sort");
 const productsQTY = products.length;
@@ -317,7 +318,7 @@ function showRows(data = copyProducts) {
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
   const productForCurrentPage = data.slice(startIndex, endIndex);
-  console.log(productForCurrentPage);
+  // console.log(productForCurrentPage);
   productForCurrentPage.forEach(createRow);
 }
 
@@ -451,12 +452,17 @@ function descendingSorted(valA, valB) {
 }
 function sortbyNumber(data, field, sortOrder) {
   if (sortOrder === "مرتب نشده") {
-    return unSorted(products);
+    // console.log(availableStateProduct.value);.3
+    if (availableStateProduct.value === "همه") {
+      return unSorted(products);
+    } else {
+      return unSorted(filtered);
+    }
   }
   copyProducts = data.slice().sort((a, b) => {
     let valA = a[field];
     let valB = b[field];
-    console.log(valA, valB);
+    // console.log(valA, valB);
 
     if (typeof valA === "string") {
       valA = Number(valA.replace(/,/g, "")) || Number(valA.replace(/\//g, ""));
@@ -476,7 +482,10 @@ function sortbyNumber(data, field, sortOrder) {
 
 function sortbyName(data, field, sortOrder) {
   if (sortOrder === "مرتب نشده") {
-    return unSorted(products);
+    if (availableStateProduct.value === "همه") {
+      return unSorted(products);
+    }
+    return unSorted(filtered);
   }
   copyProducts = data.slice().sort((a, b) => {
     let valA = a[field];
@@ -569,7 +578,7 @@ sortBtns.forEach((btn) => {
 });
 availableStateProduct.addEventListener("change", () => {
   let state = availableStateProduct.value;
-  let filtered = sortbyAvailable(products, "inStock", state);
+  filtered = sortbyAvailable(products, "inStock", state);
   pagesNumber = Math.ceil(filtered.length / itemPerPage);
   showRows(filtered);
   renderPagination(1);
