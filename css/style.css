@@ -129,11 +129,12 @@ body {
 /*header*/
 header {
   position: fixed;
+  z-index: 9999;
 }
 /*navbar*/
 .header__top {
   width: 100vw;
-  height: 80px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,6 +158,9 @@ header {
 .navbar__wrapper__logo a {
   width: 70px;
 }
+.navbar__wrapper__logo a img {
+  max-width: 80%;
+}
 .navbar__wrapper__links {
   width: 800px;
 }
@@ -173,7 +177,7 @@ header {
 .nav-link {
   position: relative;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--color-theme-text);
   &::after {
     content: "";
@@ -199,13 +203,13 @@ header {
 .navbar__wrapper__theme-changer {
   align-items: center;
   justify-content: center;
-  width: 150px;
+  width: 180px;
 }
 .navbar__wrapper__theme-changer span {
   display: flex;
   align-items: center;
   position: relative;
-  width: 40%;
+  width: 34%;
   height: 32px;
   padding: 12px 6px;
   border-radius: 20px;
@@ -235,14 +239,14 @@ main {
   justify-content: center;
   align-items: center;
   flex: 1;
-  padding: 100px 32px 100px;
+  padding: 150px 32px 100px;
 }
 
 /*footer*/
 footer {
   /* position: fixed;
   bottom: 0; */
-  padding: 16px;
+  /* padding: 16px; */
   width: 100vw;
   height: auto;
   background-color: var(--color-theme-wrapper);
@@ -264,7 +268,7 @@ footer {
 }
 
 .footer__wrapper__socials ul {
-  padding: 32px 0 20px;
+  padding: 20px 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,7 +298,7 @@ footer {
   align-items: center;
   justify-content: center;
   direction: rtl;
-  padding: 20px 0 20px;
+  padding: 14px 0;
   gap: 120px;
 }
 .footer__wrapper__links ul li {
@@ -308,7 +312,7 @@ footer {
 }
 
 .footer__bottom {
-  padding: 10px 0 20px;
+  /* padding: 10px 0 10px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -316,8 +320,14 @@ footer {
 .footer__bottom__copy-right {
   width: 80%;
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   border-top: 2px solid var(--color-gray-light);
   color: var(--color-theme-text-light);
+}
+.designer {
+  color: var(--color-theme-link-text);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
