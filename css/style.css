@@ -329,4 +329,5 @@ footer {
   color: var(--color-theme-link-text);
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 }

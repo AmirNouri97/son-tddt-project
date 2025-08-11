@@ -76,7 +76,7 @@ const footerHTML = `<footer>
         </div>
       </section>
       <section class="footer__bottom">
-        <p class="footer__bottom__copy-right">تمامی حقوق برای <span class="designer">طراح</span> محفوظ است</p>
+        <p class="footer__bottom__copy-right">تمامی حقوق برای <span class="designer" title="Amir Hosein Nouri">طراح</span> محفوظ است &copy;</p>
       </section>
     </footer>`;
 
