@@ -547,8 +547,6 @@ window.addEventListener("load", () => {
 });
 thGroup.forEach((th) => {
   th.addEventListener("click", (e) => {
-    console.log(...thGroup);
-
     const clickedTh = e.currentTarget;
 
     let sortName = clickedTh.getAttribute("data-value");

@@ -195,12 +195,13 @@ svg {
   height: auto;
 }
 .sort-arrow {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .sort-arrow {
-  color: var(--color-cancelled-text);
+  color: var(--color-black);
+  text-shadow: 0 0 10px var(--color-white);
 }
 #available {
   border: none;
