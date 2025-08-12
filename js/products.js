@@ -289,10 +289,13 @@ const firstPageBtn = $.querySelector(".first__page");
 const prevPageBtn = $.querySelector(".prev__page");
 const nextPageBtn = $.querySelector(".next__page");
 const lastPageBtn = $.querySelector(".last__page");
+const thGroup = $.querySelectorAll("thead tr th");
+
+const sortBtns = $.querySelectorAll(".sort-arrow");
 //data
 let filtered;
+let sortOrder = "";
 console.log(products);
-const sortBtns = $.querySelectorAll(".sort");
 const productsQTY = products.length;
 const availableStateProduct = $.querySelector("#available");
 
@@ -303,7 +306,11 @@ let pagesNumber = Math.ceil(productsQTY / itemPerPage);
 let currentPage = 1;
 
 let allPageNumbers = [];
-
+function clearSpanInner() {
+  sortBtns.forEach((span) => {
+    span.innerHTML = "";
+  });
+}
 function activePage(page) {
   if (page < 1) page = 1;
   if (page > pagesNumber) page = pagesNumber;
@@ -451,7 +458,7 @@ function descendingSorted(valA, valB) {
   return valB - valA;
 }
 function sortbyNumber(data, field, sortOrder) {
-  if (sortOrder === "مرتب نشده") {
+  if (sortOrder === "") {
     // console.log(availableStateProduct.value);.3
     if (availableStateProduct.value === "همه") {
       return unSorted(products);
@@ -471,9 +478,9 @@ function sortbyNumber(data, field, sortOrder) {
       valB = Number(valB.replace(/,/g, "")) || Number(valB.replace(/\//g, ""));
     }
 
-    if (sortOrder === "صعودی") {
+    if (sortOrder === "↑") {
       return ascendingSorted(valA, valB);
-    } else if (sortOrder === "نزولی") {
+    } else if (sortOrder === "↓") {
       return descendingSorted(valA, valB);
     }
   });
@@ -481,7 +488,7 @@ function sortbyNumber(data, field, sortOrder) {
 }
 
 function sortbyName(data, field, sortOrder) {
-  if (sortOrder === "مرتب نشده") {
+  if (sortOrder === "") {
     if (availableStateProduct.value === "همه") {
       return unSorted(products);
     }
@@ -490,16 +497,17 @@ function sortbyName(data, field, sortOrder) {
   copyProducts = data.slice().sort((a, b) => {
     let valA = a[field];
     let valB = b[field];
-    console.log(valA, valB);
-    if (sortOrder === "صعودی") {
+    // console.log(valA, valB);
+    if (sortOrder === "↑") {
       return a.name.localeCompare(b.name);
-    } else if (sortOrder === "نزولی") {
+    } else if (sortOrder === "↓") {
       return b.name.localeCompare(a.name);
     }
   });
 }
 function sortbyAvailable(data, field, sortOrder) {
   if (sortOrder === "همه") {
+    clearSpanInner();
     copyProducts = unSorted(products);
     pagesNumber = Math.ceil(copyProducts.length / itemPerPage);
     currentPage = 1;
@@ -537,25 +545,34 @@ window.addEventListener("load", () => {
   renderPagination(1);
   showRows();
 });
+thGroup.forEach((th) => {
+  th.addEventListener("click", (e) => {
+    const clickedTh = e.currentTarget;
 
-sortBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    let sortOrder = e.target.textContent;
-    let sortName = e.target.getAttribute("data-value");
+    let sortName = clickedTh.getAttribute("data-value");
+    // const spans = $.querySelectorAll(".sort");
+    // console.log(sortName);
+    document.querySelectorAll("span.sort-arrow").forEach((s) => {
+      if (s !== clickedTh.querySelector("span.sort-arrow")) s.innerHTML = "";
+    });
 
-    if (sortOrder === "مرتب نشده") {
-      sortOrder = "نزولی";
-      e.target.textContent = "نزولی";
-    } else if (sortOrder === "نزولی") {
-      sortOrder = "صعودی";
-      e.target.textContent = "صعودی";
-    } else if (sortOrder === "صعودی") {
-      sortOrder = "مرتب نشده";
-      e.target.textContent = "مرتب نشده";
+    const span = clickedTh.querySelector("span.sort-arrow");
+
+    if (!span) return;
+    sortOrder = span.innerHTML.trim();
+    // console.log(sortOrder);
+    if (sortOrder === "") {
+      sortOrder = "↓";
+      span.innerHTML = sortOrder;
+    } else if (sortOrder === "↓") {
+      sortOrder = "↑";
+      span.innerHTML = sortOrder;
+    } else if (sortOrder === "↑") {
+      sortOrder = "";
+      span.innerHTML = sortOrder;
     } else {
       return 0;
     }
-    // console.log(sortOrder);
 
     switch (sortName.trim()) {
       case "ردیف":
@@ -574,6 +591,12 @@ sortBtns.forEach((btn) => {
         showRows(sortbyName(copyProducts, "name", sortOrder));
         break;
     }
+  });
+});
+
+sortBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    // console.log(sortOrder);
   });
 });
 availableStateProduct.addEventListener("change", () => {
