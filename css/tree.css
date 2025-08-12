@@ -1,0 +1,20 @@
+.tree__wrapper {
+  text-align: start;
+  direction: rtl;
+}
+.first__child {
+  display: none;
+}
+.first__child.active {
+  display: block;
+}
+.second__parent h2 {
+  padding-right: 20px;
+}
+.second__child {
+  padding-right: 60px;
+  display: none;
+}
+.second__child.active {
+  display: block;
+}

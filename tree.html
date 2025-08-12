@@ -10,13 +10,45 @@
     />
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tree.css" />
     <title>TDDT</title>
   </head>
   <body>
     <div id="header-placeHolder"></div>
-    <main></main>
+    <main>
+      <section class="tree__wrapper">
+        <ul class="first__parent">
+          <h2 class="first__parent--title">والد 1</h2>
+          <li class="first__child">
+            <ul class="second__parent">
+              <h2 class="second__parent--title">زیر والد 1</h2>
+              <li class="second__child">فرزند 1</li>
+              <li class="second__child">فرزند 1</li>
+              <li class="second__child">فرزند 1</li>
+            </ul>
+          </li>
+          <li class="first__child">
+            <ul class="second__parent">
+              <h2 class="second__parent--title">زیر والد 2</h2>
+              <li class="second__child">فرزند 1</li>
+              <li class="second__child">فرزند 1</li>
+              <li class="second__child">فرزند 1</li>
+            </ul>
+          </li>
+          <li class="first__child">
+            <ul class="second__parent">
+              <h2 class="second__parent--title">زیر والد 3</h2>
+              <li class="second__child">فرزند 1</li>
+              <li class="second__child">فرزند 1</li>
+              <li class="second__child">فرزند 1</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </main>
     <div id="footer-placeHolder"></div>
   </body>
   <script src="./js/script.js"></script>
+  <script src="./js/tree.js"></script>
   <!-- <script src="./js/darkTheme.js"></script> -->
 </html>
