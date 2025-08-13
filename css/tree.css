@@ -1,0 +1,85 @@
+:root {
+  --shadow-light: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+  --shadow-dark: 4px 4px 8px #0b1120, -4px -4px 8px #1e293b;
+  --shadow-inset-light: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+  --shadow-inset-dark: inset 4px 4px 8px #0b1120, inset -4px -4px 8px #1e293b;
+}
+
+body {
+  --shadow: var(--shadow-light);
+  --shadow-inset: var(--shadow-inset-light);
+}
+
+/* 🌙 تم تیره */
+body.dark-theme {
+  --shadow: var(--shadow-dark);
+  --shadow-inset: var(--shadow-inset-dark);
+}
+.tree__wrapper {
+  text-align: start;
+  direction: rtl;
+  background-color: var(--color-theme-wrapper);
+  width: 250px;
+  height: 550px;
+  border-radius: 6px;
+  color: var(--color-theme-text);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.tree__wrapper ul,
+.tree__wrapper li {
+  cursor: pointer;
+}
+
+.first__parent {
+  height: 250px;
+}
+.first__child {
+  display: none;
+}
+.first__child.active {
+  display: block;
+  /* height: 250px; */
+}
+.second__parent h2 {
+  padding-right: 40px;
+}
+.second__child {
+  padding-right: 80px;
+  display: none;
+  padding: 10px 120px 10px 0;
+}
+.second__child.active {
+  display: block;
+}
+.red {
+  color: var(--color-theme-link-active);
+  transform: scale(1.1);
+}
+.first__parent--title {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin: 10px 0;
+}
+.second__parent--title {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.tree__wrapper svg {
+  width: 24px;
+  height: 24px;
+  cursor: default;
+  stroke: var(--color-theme-text);
+}
+.tree__wrapper svg path {
+  fill: var(--color-tree);
+}
+.tree-icon--vector {
+  transition: transform 300ms ease;
+}
+.tree-icon--vector.active {
+  transform: rotate(90deg);
+}
