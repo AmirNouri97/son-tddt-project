@@ -61,6 +61,7 @@ body.dark-theme {
 } */
 
 :root {
+  --color-tree: #fff;
   --color-shadow: #0000001a;
   --color-white: #ffffff;
   --color-white-100: #f8fafc;
@@ -96,6 +97,7 @@ body.dark-theme {
 }
 
 body.dark-theme {
+  --color-tree: #000000;
   --color-shadow: #d1d5db;
   --color-theme: #0f172a;
   --color-theme-link-text: #38bdf8;
