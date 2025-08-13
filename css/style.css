@@ -25,40 +25,6 @@
   src: url(../public/assets/fonts/Vazir/Vazir-Bold-FD-WOL.woff2) format(woff2);
   font-weight: 600;
 }
-/* :root {
-  --color-white: #fff;
-  --color-white-100: #f0f0f0;
-  --color-black: #000;
-  --color-gray: #676767;
-  --color-gray-dark: #333;
-  --color-gray-light: #c5c5c5;
-  --color-green-dark: #00aa9d;
-  --color-green-light: #00beb0;
-
-  --color-green: #1eb35b;
-
-  --color-theme: #f3f4f6;
-  --color-theme-link-text: #1eb35b;
-  --color-theme-wrapper: #fff;
-  --color-theme-text: #000;
-  --color-theme-text-light: #676767;
-  --color-theme-bg-light: #f3f4f6;
-  --color-theme-link-active: #1eb35b;
-  --color-lamp: #f0ef7c;
-
-  font-family: "Vazir";
-}
-body.dark-theme {
-  --color-theme: #111827;
-  --color-theme-link-text: #111827;
-  --color-theme-wrapper: #64748b;
-  --color-theme-text: #fff;
-  --color-gray-light: #fff;
-  --color-theme-text-light: #fff;
-  --color-theme-bg-light: #f3f4f6;
-  --color-theme-link-active: #0a97d4;
-  --color-lamp: #abf9ff;
-} */
 
 :root {
   --color-tree: #fff;
@@ -85,7 +51,7 @@ body.dark-theme {
 
   --color-row-odd-table: #fdfdfd;
   --color-row-even-table: #e7e7e7;
-
+  --color-red: red;
   font-family: "Vazir";
 
   --color-success: #86e49d;
@@ -141,7 +107,6 @@ header {
   align-items: center;
   justify-content: center;
   background-color: var(--color-theme-wrapper);
-  /* box-shadow: 0 0 2px 1px var(--color-gray-light); */
   box-shadow: 0 0 2px 1px var(--color-shadow);
   backdrop-filter: blur(10px);
 }
@@ -224,7 +189,6 @@ header {
   left: 6px;
   border-radius: 50%;
   background-color: var(--color-lamp);
-  /* transition: left 0.5s ease; */
   transition: left 0.5s ease, transform 0.3s ease;
 }
 
@@ -252,7 +216,6 @@ footer {
   width: 100vw;
   height: auto;
   background-color: var(--color-theme-wrapper);
-  /* box-shadow: 0 0 2px 1px var(--color-gray-light); */
   box-shadow: 0 0 2px 1px var(--color-shadow);
   backdrop-filter: blur(10px);
 }
@@ -314,7 +277,6 @@ footer {
 }
 
 .footer__bottom {
-  /* padding: 10px 0 10px; */
   display: flex;
   align-items: center;
   justify-content: center;

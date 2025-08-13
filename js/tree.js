@@ -26,7 +26,6 @@ firstParentIcon.addEventListener("click", (e) => {
           li2.parentElement
             .querySelectorAll(".second__child")
             .forEach((li3) => {
-              // li3.classList.remove("active");
               li3.classList.toggle("active");
               li3.addEventListener("click", (e) => {
                 secondChild.forEach((item) => item.classList.remove("red"));
