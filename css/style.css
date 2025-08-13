@@ -210,9 +210,6 @@ main {
 
 /*footer*/
 footer {
-  /* position: fixed;
-  bottom: 0; */
-  /* padding: 16px; */
   width: 100vw;
   height: auto;
   background-color: var(--color-theme-wrapper);
@@ -243,8 +240,8 @@ footer {
   cursor: pointer;
   background-color: var(--color-theme-bg-light);
   border-radius: 50%;
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,7 +253,7 @@ footer {
 }
 
 .footer__wrapper__socials ul li a img {
-  width: 32px;
+  width: 28px;
 }
 .footer__wrapper__links ul {
   display: flex;
