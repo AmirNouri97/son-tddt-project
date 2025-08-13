@@ -8,7 +8,6 @@
 }
 .drop-downs__section__title {
   padding: 20px;
-  /* text-align: start; */
   color: var(--color-theme-text);
   font-size: 20px;
   font-weight: 600;
@@ -47,7 +46,7 @@
 }
 .drop-down__search__btn:hover {
   box-shadow: var(--shadow-inset);
-  transform: scale(0.97); /* کمی کوچیک میشه برای حس فشردگی */
+  transform: scale(0.97);
   background-color: rgba(0, 0, 0, 0.02);
 }
 .drop-down__search__btn span {
@@ -72,7 +71,6 @@
   --shadow-inset-dark: inset 4px 4px 8px #0b1120, inset -4px -4px 8px #1e293b;
 }
 
-/* 💡 تم روشن (پیش‌فرض) */
 body {
   --bg: var(--bg-light);
   --shadow: var(--shadow-light);
@@ -81,7 +79,6 @@ body {
   --bg-text: #0f172a;
 }
 
-/* 🌙 تم تیره */
 body.dark-theme {
   --bg: var(--bg-dark);
   --shadow: var(--shadow-dark);
@@ -135,11 +132,11 @@ body.dark-theme {
 
 .drop-down__trigger:hover {
   box-shadow: var(--shadow-inset);
-  transform: scale(0.97); /* کمی کوچیک میشه برای حس فشردگی */
+  transform: scale(0.97);
   background-color: rgba(0, 0, 0, 0.02);
 }
 body.dark-theme .drop-down__trigger:hover {
-  background-color: rgba(255, 255, 255, 0.05); /* در تم تیره کمی روشن‌تر */
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .trigger__value {
   width: 90%;
@@ -151,7 +148,7 @@ body.dark-theme .drop-down__trigger:hover {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-40px);
-  transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.3s ease, visibility 0.2s ease;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -166,10 +163,10 @@ body.dark-theme .drop-down__trigger:hover {
   -ms-border-radius: 16px;
   -o-border-radius: 16px;
   -webkit-transition: opacity 0.2s ease, transform 0.3s ease,
-    visiblity 0.2s ease;
-  -moz-transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
-  -ms-transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
-  -o-transition: opacity 0.2s ease, transform 0.3s ease, visiblity 0.2s ease;
+    visibility 0.2s ease;
+  -moz-transition: opacity 0.2s ease, transform 0.3s ease, visibility 0.2s ease;
+  -ms-transition: opacity 0.2s ease, transform 0.3s ease, visibility 0.2s ease;
+  -o-transition: opacity 0.2s ease, transform 0.3s ease, visibility 0.2s ease;
 }
 .drop-down__menu.active {
   opacity: 1;
@@ -207,10 +204,11 @@ body.dark-theme .drop-down__trigger:hover {
   transition: all 0.3s;
   width: 32px;
   height: 32px;
-  -webkit-transform: rotatex(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -o-transform: rotateX(180deg);
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
@@ -258,15 +256,13 @@ body.dark-theme .drop-down__trigger:hover {
 .newCity:hover {
   background-color: var(--border-color);
 }
-.newCity:hover .cancel path {
-}
 .multi__trigger__value {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 .menu-multi li input {
-  accent-color: red;
+  accent-color: var(--color-red);
 }
 .multi__trigger__value__title {
   padding: 6px;
@@ -278,4 +274,7 @@ body.dark-theme .drop-down__trigger:hover {
 }
 .trigger-2 {
   align-items: flex-start;
+}
+.simple__trigger__value {
+  padding: 6px;
 }

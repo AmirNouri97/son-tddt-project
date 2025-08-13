@@ -10,7 +10,6 @@ body {
   --shadow-inset: var(--shadow-inset-light);
 }
 
-/* 🌙 تم تیره */
 body.dark-theme {
   --shadow: var(--shadow-dark);
   --shadow-inset: var(--shadow-inset-dark);
@@ -39,7 +38,6 @@ body.dark-theme {
 }
 .first__child.active {
   display: block;
-  /* height: 250px; */
 }
 .second__parent h2 {
   padding-right: 40px;

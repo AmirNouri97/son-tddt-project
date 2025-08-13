@@ -290,12 +290,9 @@ const prevPageBtn = $.querySelector(".prev__page");
 const nextPageBtn = $.querySelector(".next__page");
 const lastPageBtn = $.querySelector(".last__page");
 const thGroup = $.querySelectorAll("thead tr th");
-
 const sortBtns = $.querySelectorAll(".sort-arrow");
-//data
 let filtered;
 let sortOrder = "";
-console.log(products);
 const productsQTY = products.length;
 const availableStateProduct = $.querySelector("#available");
 
@@ -325,7 +322,6 @@ function showRows(data = copyProducts) {
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
   const productForCurrentPage = data.slice(startIndex, endIndex);
-  // console.log(productForCurrentPage);
   productForCurrentPage.forEach(createRow);
 }
 

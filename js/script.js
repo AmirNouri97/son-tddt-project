@@ -97,7 +97,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const theme = document.createElement("script");
   theme.src = "./js/darkTheme.js";
-  console.log(theme);
-
   document.body.appendChild(theme);
 });

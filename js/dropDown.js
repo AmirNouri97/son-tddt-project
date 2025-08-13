@@ -1,23 +1,23 @@
-const dropDownSimplieListTrigger = document.querySelector(".trigger-1");
+const dropDownSimpleListTrigger = document.querySelector(".trigger-1");
 const dropDownMenuSimple = document.querySelector(".menu-simple");
 const arrowSimpleList = document.querySelector(".arrow-1 svg");
 
 function showList(list, arrow) {
   list.classList.toggle("active");
   if (list.classList.contains("active")) {
-    arrow.style.transform = "rotatex(0deg)";
+    arrow.style.transform = "rotateX(0deg)";
   } else {
-    arrow.style.transform = "rotatex(180deg)";
+    arrow.style.transform = "rotateX(180deg)";
   }
 }
 function clickOutside(trigger, list, arrow) {
   if (!trigger.contains(event.target) && !list.contains(event.target)) {
     list.classList.remove("active");
-    arrow.style.transform = "rotatex(180deg)";
+    arrow.style.transform = "rotateX(180deg)";
   }
 }
 
-dropDownSimplieListTrigger.addEventListener("click", (e) => {
+dropDownSimpleListTrigger.addEventListener("click", (e) => {
   showList(dropDownMenuSimple, arrowSimpleList);
 });
 const triggerValueSimple = document.querySelector(".simple__trigger__value");
@@ -31,7 +31,7 @@ optionSimpleList.forEach((opt) => {
   });
 });
 document.addEventListener("click", (event) => {
-  clickOutside(dropDownSimplieListTrigger, dropDownMenuSimple, arrowSimpleList);
+  clickOutside(dropDownSimpleListTrigger, dropDownMenuSimple, arrowSimpleList);
   clickOutside(dropDownMultiListTrigger, dropDownMenuMulti, arrowMultiList);
 });
 
