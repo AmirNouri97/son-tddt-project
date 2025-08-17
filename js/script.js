@@ -99,3 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
   theme.src = "./js/darkTheme.js";
   document.body.appendChild(theme);
 });
+document.querySelectorAll(".btn__link").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const link = e.currentTarget;
+    console.log(link);
+
+    link.classList.add("page-rotate");
+    setTimeout(() => {
+      window.location.href = link.href;
+    }, 2200);
+  });
+});
