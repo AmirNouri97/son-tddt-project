@@ -281,8 +281,10 @@ const products = [
     inStock: "بله",
   },
 ];
+let finalData;
 let copyProducts = products.slice();
 const tableQty = $.querySelector("#table__qty-id");
+
 const tableBody = $.querySelector("tbody");
 const paginationWrapper = $.querySelector(".pagination__numbers__wrapper");
 const firstPageBtn = $.querySelector(".first__page");
@@ -312,7 +314,7 @@ function activePage(page) {
   if (page < 1) page = 1;
   if (page > pagesNumber) page = pagesNumber;
 
-  currentPage = page;
+  currentPage = page; //3
   showRows();
   updateActivePageUI();
 }
@@ -321,8 +323,14 @@ function showRows(data = copyProducts) {
   tableBody.textContent = "";
   const startIndex = (currentPage - 1) * itemPerPage;
   const endIndex = startIndex + itemPerPage;
+  console.log(startIndex, endIndex);
+  console.log(copyProducts);
+
   const productForCurrentPage = data.slice(startIndex, endIndex);
-  productForCurrentPage.forEach(createRow);
+  finalData = productForCurrentPage.slice();
+  console.log(finalData, "finalData");
+
+  finalData.forEach((item) => createRow(item));
 }
 
 function updateActivePageUI() {
@@ -334,6 +342,8 @@ function updateActivePageUI() {
 }
 
 function createRow(item) {
+  // console.log(item);
+
   const tr = $.createElement("tr");
 
   const tdID = $.createElement("td");
@@ -454,51 +464,74 @@ function descendingSorted(valA, valB) {
   return valB - valA;
 }
 function sortbyNumber(data, field, sortOrder) {
-  if (sortOrder === "") {
-    // console.log(availableStateProduct.value);.3
-    if (availableStateProduct.value === "همه") {
-      return unSorted(products);
-    } else {
-      return unSorted(filtered);
-    }
-  }
-  copyProducts = data.slice().sort((a, b) => {
+  if (sortOrder === "") return data.slice();
+  return data.slice().sort((a, b) => {
     let valA = a[field];
     let valB = b[field];
-    // console.log(valA, valB);
-
     if (typeof valA === "string") {
       valA = Number(valA.replace(/,/g, "")) || Number(valA.replace(/\//g, ""));
     }
     if (typeof valB === "string") {
       valB = Number(valB.replace(/,/g, "")) || Number(valB.replace(/\//g, ""));
     }
-
-    if (sortOrder === "↑") {
-      return ascendingSorted(valA, valB);
-    } else if (sortOrder === "↓") {
-      return descendingSorted(valA, valB);
-    }
+    return sortOrder === "↑"
+      ? ascendingSorted(valA, valB)
+      : descendingSorted(valA, valB);
   });
-  return copyProducts;
+  // if (sortOrder === "") {
+  //   // console.log(availableStateProduct.value);.3
+  //   if (availableStateProduct.value === "همه") {
+  //     return unSorted(products);
+  //   } else {
+  //     return unSorted(filtered);
+  //   }
+  // }
+  // copyProducts = data.slice().sort((a, b) => {
+  //   let valA = a[field];
+  //   let valB = b[field];
+  //   // console.log(valA, valB);
+
+  //   if (typeof valA === "string") {
+  //     valA = Number(valA.replace(/,/g, "")) || Number(valA.replace(/\//g, ""));
+  //   }
+  //   if (typeof valB === "string") {
+  //     valB = Number(valB.replace(/,/g, "")) || Number(valB.replace(/\//g, ""));
+  //   }
+
+  //   if (sortOrder === "↑") {
+  //     return ascendingSorted(valA, valB);
+  //   } else if (sortOrder === "↓") {
+  //     return descendingSorted(valA, valB);
+  //   }
+  // });
+  // return copyProducts;
 }
 
 function sortbyName(data, field, sortOrder) {
+  // if (sortOrder === "") {
+  //   if (availableStateProduct.value === "همه") {
+  //     return unSorted(products);
+  //   }
+  //   return unSorted(filtered);
+  // }
+  // copyProducts = data.slice().sort((a, b) => {
+  //   let valA = a[field];
+  //   let valB = b[field];
+  //   // console.log(valA, valB);
+  //   if (sortOrder === "↑") {
+  //     return a.name.localeCompare(b.name);
+  //   } else if (sortOrder === "↓") {
+  //     return b.name.localeCompare(a.name);
+  //   }
+  // });
+
   if (sortOrder === "") {
-    if (availableStateProduct.value === "همه") {
-      return unSorted(products);
-    }
-    return unSorted(filtered);
+    return data.slice();
   }
-  copyProducts = data.slice().sort((a, b) => {
-    let valA = a[field];
-    let valB = b[field];
-    // console.log(valA, valB);
-    if (sortOrder === "↑") {
-      return a.name.localeCompare(b.name);
-    } else if (sortOrder === "↓") {
-      return b.name.localeCompare(a.name);
-    }
+  return data.slice().sort((a, b) => {
+    return sortOrder === "↑"
+      ? a[field].localeCompare(b[field])
+      : b[field].localeCompare(a[field]);
   });
 }
 function sortbyAvailable(data, field, sortOrder) {
@@ -570,31 +603,58 @@ thGroup.forEach((th) => {
       return 0;
     }
 
+    // switch (sortName.trim()) {
+    //   case "ردیف":
+    //     showRows(sortbyNumber(finalData, "id", sortOrder));
+    //     break;
+    //   case "تعداد":
+    //     showRows(sortbyNumber(finalData, "count", sortOrder));
+    //     break;
+    //   case "قیمت":
+    //     showRows(sortbyNumber(finalData, "price", sortOrder));
+    //     break;
+    //   case "تاریخ":
+    //     showRows(sortbyNumber(finalData, "date", sortOrder));
+    //     break;
+    //   case "اسم":
+    //     showRows(sortbyName(finalData, "name", sortOrder));
+    //     break;
+    //   default:
+    //     sortedPageData = finalData;
+    // }
+    // });
+    let sortedPageData = [];
     switch (sortName.trim()) {
       case "ردیف":
-        showRows(sortbyNumber(copyProducts, "id", sortOrder));
+        sortedPageData = sortbyNumber(finalData, "id", sortOrder);
         break;
       case "تعداد":
-        showRows(sortbyNumber(copyProducts, "count", sortOrder));
+        sortedPageData = sortbyNumber(finalData, "count", sortOrder);
         break;
       case "قیمت":
-        showRows(sortbyNumber(copyProducts, "price", sortOrder));
+        sortedPageData = sortbyNumber(finalData, "price", sortOrder);
         break;
       case "تاریخ":
-        showRows(sortbyNumber(copyProducts, "date", sortOrder));
+        sortedPageData = sortbyNumber(finalData, "date", sortOrder);
         break;
       case "اسم":
-        showRows(sortbyName(copyProducts, "name", sortOrder));
+        sortedPageData = sortbyName(finalData, "name", sortOrder);
         break;
+      default:
+        sortedPageData = finalData;
     }
+
+    // نمایش مجدد همون صفحه با آیتم‌های سورت‌شده
+    tableBody.textContent = "";
+    sortedPageData.forEach((item) => createRow(item));
   });
 });
 
-sortBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    // console.log(sortOrder);
-  });
-});
+// sortBtns.forEach((btn) => {
+//   btn.addEventListener("click", (e) => {
+//     console.log(sortOrder);
+//   });
+// });
 availableStateProduct.addEventListener("change", () => {
   let state = availableStateProduct.value;
   filtered = sortbyAvailable(products, "inStock", state);
