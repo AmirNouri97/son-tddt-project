@@ -1,3 +1,19 @@
+body {
+  --bg: var(--bg-light);
+  --shadow: var(--shadow-light);
+  --shadow-inset: var(--shadow-inset-light);
+  --bg-text: #0f172a;
+}
+
+body.dark-theme {
+  --bg: var(--bg-dark);
+  --shadow: var(--shadow-dark);
+  --shadow-inset: var(--shadow-inset-dark);
+  --bg-text: #f1f5f9;
+  --hover-bg: #1e3a8a;
+  --hover-text: #f1f5f9;
+}
+
 .drop-downs__section {
   display: flex;
   flex-direction: column;
@@ -47,7 +63,7 @@
 .drop-down__search__btn:hover {
   box-shadow: var(--shadow-inset);
   transform: scale(0.97);
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: var(--color-background-light);
 }
 .drop-down__search__btn span {
   width: 32px;
@@ -59,39 +75,10 @@
   fill: var(--bg-light);
 }
 
-:root {
-  --bg-light: #f8fafc;
-  --bg-dark: #0f172a;
-  --bg-text: #0f172a;
-  --hover-bg: #bbf7d0;
-  --hover-text: #0f4636;
-  --shadow-light: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
-  --shadow-dark: 4px 4px 8px #0b1120, -4px -4px 8px #1e293b;
-  --shadow-inset-light: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
-  --shadow-inset-dark: inset 4px 4px 8px #0b1120, inset -4px -4px 8px #1e293b;
-}
-
-body {
-  --bg: var(--bg-light);
-  --shadow: var(--shadow-light);
-  --shadow-inset: var(--shadow-inset-light);
-  color: #0f172a;
-  --bg-text: #0f172a;
-}
-
-body.dark-theme {
-  --bg: var(--bg-dark);
-  --shadow: var(--shadow-dark);
-  --shadow-inset: var(--shadow-inset-dark);
-  color: #f1f5f9;
-  --bg-text: #f1f5f9;
-  --hover-bg: #1e3a8a;
-  --hover-text: #f1f5f9;
-}
-
 .drop-down__list--simple,
 .drop-down__list--multi-select {
   background: var(--bg);
+  color: var(--bg-text);
   padding: 20px;
   border-radius: 20px;
   box-shadow: var(--shadow);
@@ -133,10 +120,10 @@ body.dark-theme {
 .drop-down__trigger:hover {
   box-shadow: var(--shadow-inset);
   transform: scale(0.97);
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: var(--color-background-light);
 }
 body.dark-theme .drop-down__trigger:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--color-background-overlay);
 }
 .trigger__value {
   width: 90%;
@@ -277,4 +264,7 @@ body.dark-theme .drop-down__trigger:hover {
 }
 .simple__trigger__value {
   padding: 6px;
+}
+.change-text-color {
+  background-color: var(--hover-bg) !important;
 }

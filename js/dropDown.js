@@ -33,10 +33,20 @@ dropDownSimpleListTrigger.addEventListener("click", (e) => {
 });
 const triggerValueSimple = document.querySelector(".simple__trigger__value");
 const optionSimpleList = document.querySelectorAll(".menu-simple li");
+
 optionSimpleList.forEach((opt) => {
+  // console.log(opt);
   opt.addEventListener("click", (e) => {
-    let selected = e.target.innerHTML;
-    triggerValueSimple.innerHTML = selected;
+    optionSimpleList.forEach((opt) => {
+      opt.classList.remove("change-text-color");
+    });
+    opt.classList.add("change-text-color");
+    // console.log(opt);
+    // let selected = e.target.innerHTML;
+    // triggerValueSimple.innerHTML = selected;
+    let selected = e.target.textContent;
+    triggerValueSimple.textContent = selected;
+
     dropDownMenuSimple.classList.remove("active");
     arrowSimpleList.style.transform = "rotateX(180deg)";
   });
@@ -46,6 +56,7 @@ document.addEventListener("click", (event) => {
   clickOutside(dropDownMultiListTrigger, dropDownMenuMulti, arrowMultiList);
 });
 
+/* ----------------------- multi select drop down -------------------- */
 const dropDownMultiListTrigger = document.querySelector(".trigger-2");
 const dropDownMenuMulti = document.querySelector(".menu-multi");
 const checkedCity = document.querySelectorAll(".menu-multi li input");
@@ -56,7 +67,7 @@ const selectedCitiesContainer =
 dropDownMultiListTrigger.addEventListener("click", () => {
   showList(dropDownMenuMulti, arrowMultiList);
 });
-
+// let multiCitiesArr = [];
 let colorIndex = 0;
 function pickColor() {
   let color = colorPalette[colorIndex];
@@ -64,20 +75,26 @@ function pickColor() {
   return color;
 }
 document.querySelectorAll(".menu-multi li").forEach((li) => {
-  const cityName = li.textContent.trim();
-  const cityValue = li.getAttribute("data-value");
   li.addEventListener("click", function () {
+    const cityName = li.textContent.trim();
+    const cityValue = li.getAttribute("data-value");
     let checkBox = li.querySelector("input[type=checkbox]");
-    console.log(checkBox);
-    checkBox.checked = true;
-    const cityDiv = document.createElement("div");
-    cityDiv.setAttribute("data-value", cityValue);
-    const borderColor = pickColor();
-    cityDiv.style.setProperty("--border-color", borderColor);
-    cityDiv.style.border = `2px solid ${borderColor}`;
-    cityDiv.classList.add("newCity");
+    let existingCity = selectedCitiesContainer.querySelector(
+      `div[data-value="${cityValue}"]`
+    );
+    if (existingCity) {
+      selectedCitiesContainer.removeChild(existingCity);
+      checkBox.checked = false;
+    } else {
+      const cityDiv = document.createElement("div");
+      cityDiv.setAttribute("data-value", cityValue);
 
-    cityDiv.innerHTML = `
+      const borderColor = pickColor();
+      cityDiv.style.setProperty("--border-color", borderColor);
+      cityDiv.style.border = `2px solid ${borderColor}`;
+      cityDiv.classList.add("newCity");
+
+      cityDiv.innerHTML = `
         <span>${cityName}</span>
         <div class="cancel" style="cursor:pointer;">
           <svg
@@ -95,15 +112,24 @@ document.querySelectorAll(".menu-multi li").forEach((li) => {
           </svg>
         </div>
       `;
-    cityDiv.querySelector(".cancel").addEventListener("click", (e) => {
-      e.stopPropagation();
-      checkBox.checked = false;
-      selectedCitiesContainer.removeChild(cityDiv);
-    });
-    if (!selectedCitiesContainer.querySelector(`[data-value="${cityValue}"]`))
+      checkBox.checked = true;
+
+      cityDiv.querySelector(".cancel").addEventListener("click", (e) => {
+        e.stopPropagation();
+        checkBox.checked = false;
+        selectedCitiesContainer.removeChild(cityDiv);
+      });
+
       selectedCitiesContainer.appendChild(cityDiv);
+    }
   });
 });
+// if (!selectedCitiesContainer.querySelector(`[data-value="${cityValue}"]`)) {
+//   selectedCitiesContainer.appendChild(cityDiv);
+// }
+// else {
+//   selectedCitiesContainer.removeChild(cityDiv);
+// }
 // checkedCity.forEach((checkBox) => {
 //   checkBox.addEventListener("change", (e) => {
 //     //create li element
