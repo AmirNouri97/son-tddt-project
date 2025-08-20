@@ -14,7 +14,7 @@ const headerHTML = `<header><section class="header__top d-flex">
                 <a href="table.html" class="nav-link">جدول</a>
               </li>
               <li class="navbar__link">
-                <a href="dropdown.html" class="nav-link">لیست کشویی</a>
+                <a href="dropDown.html" class="nav-link">لیست کشویی</a>
               </li>
               <li class="navbar__link">
                 <a href="tree.html" class="nav-link">درخت</a>
@@ -68,7 +68,7 @@ const footerHTML = `<footer>
             <ul>
               <li><a href="/index.html">صفحه اصلی</a></li>
               <li><a href="/table.html">جدول</a></li>
-              <li><a href="/dropdown.html">لیست کشویی</a></li>
+              <li><a href="/dropDown.html">لیست کشویی</a></li>
               <li><a href="/tree.html">درخت</a></li>
               <li><a href="/resume.html">رزومه</a></li>
             </ul>
