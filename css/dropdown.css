@@ -278,3 +278,6 @@ body.dark-theme .drop-down__trigger:hover {
 .simple__trigger__value {
   padding: 6px;
 }
+.change-text-color {
+  background-color: var(--hover-bg) !important;
+}

@@ -33,10 +33,20 @@ dropDownSimpleListTrigger.addEventListener("click", (e) => {
 });
 const triggerValueSimple = document.querySelector(".simple__trigger__value");
 const optionSimpleList = document.querySelectorAll(".menu-simple li");
+
 optionSimpleList.forEach((opt) => {
+  console.log(opt);
   opt.addEventListener("click", (e) => {
-    let selected = e.target.innerHTML;
-    triggerValueSimple.innerHTML = selected;
+    optionSimpleList.forEach((opt) => {
+      opt.classList.remove("change-text-color");
+    });
+    opt.classList.add("change-text-color");
+    console.log(opt);
+    // let selected = e.target.innerHTML;
+    // triggerValueSimple.innerHTML = selected;
+    let selected = e.target.textContent;
+    triggerValueSimple.textContent = selected;
+
     dropDownMenuSimple.classList.remove("active");
     arrowSimpleList.style.transform = "rotateX(180deg)";
   });
@@ -46,6 +56,7 @@ document.addEventListener("click", (event) => {
   clickOutside(dropDownMultiListTrigger, dropDownMenuMulti, arrowMultiList);
 });
 
+/* ----------------------- multi select drop down -------------------- */
 const dropDownMultiListTrigger = document.querySelector(".trigger-2");
 const dropDownMenuMulti = document.querySelector(".menu-multi");
 const checkedCity = document.querySelectorAll(".menu-multi li input");
