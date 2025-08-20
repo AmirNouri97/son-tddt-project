@@ -35,13 +35,13 @@ const triggerValueSimple = document.querySelector(".simple__trigger__value");
 const optionSimpleList = document.querySelectorAll(".menu-simple li");
 
 optionSimpleList.forEach((opt) => {
-  console.log(opt);
+  // console.log(opt);
   opt.addEventListener("click", (e) => {
     optionSimpleList.forEach((opt) => {
       opt.classList.remove("change-text-color");
     });
     opt.classList.add("change-text-color");
-    console.log(opt);
+    // console.log(opt);
     // let selected = e.target.innerHTML;
     // triggerValueSimple.innerHTML = selected;
     let selected = e.target.textContent;

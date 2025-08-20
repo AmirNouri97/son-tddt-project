@@ -128,7 +128,7 @@ function createLeaf(node) {
   leaf.appendChild(iconImg);
   leaf.append(iconOpenUl, " ", iconImg, " ", leafName);
   leafName.addEventListener("dblclick", () => {
-    console.log(leafName);
+    // console.log(leafName);
     if (iconOpenUl.textContent) {
       iconOpenUl.textContent = iconOpenUl.textContent === "+" ? "-" : "+";
     }

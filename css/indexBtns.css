@@ -1,10 +1,3 @@
-:root {
-  --color-linear-1: linear-gradient(90deg, #30c5ed, #28e55d);
-  --color-linear-2: linear-gradient(90deg, #2e9eef, #9c33f7);
-  --color-linear-3: linear-gradient(90deg, #ff3571, #880175);
-  --color-shadow-btn: rgba(0, 0, 0, 0.2);
-}
-
 .btns__wrapper {
   display: flex;
   justify-content: center;
@@ -23,7 +16,7 @@
   height: 200px;
   border: none;
   border-radius: 10px;
-  color: #fff;
+  color: var(--color-white);
   box-shadow: 3px 3px 4px 0 var(--color-shadow-btn);
   transition: transform 200ms ease;
 }

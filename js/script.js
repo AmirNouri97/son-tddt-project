@@ -103,7 +103,7 @@ document.querySelectorAll(".btn__link").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     const link = e.currentTarget;
-    console.log(link);
+    // console.log(link);
 
     link.classList.add("page-rotate");
     setTimeout(() => {

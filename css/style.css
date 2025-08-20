@@ -45,13 +45,13 @@
   --color-theme-wrapper: #ffffff;
   --color-theme-text: #111827;
   --color-theme-text-light: #6b7280;
-  --color-theme-bg-light: #f8fafc;
+  --color-theme-bg-light: #e5e6e8;
   --color-theme-link-active: #10b981;
   --color-lamp: #fde047;
 
   --color-row-odd-table: #fdfdfd;
   --color-row-even-table: #e7e7e7;
-  --color-red: red;
+  --color-red: #ff0000;
   font-family: "Vazir";
 
   --color-success: #86e49d;
@@ -60,6 +60,24 @@
   --color-pending-text: #916d03;
   --color-cancelled: #d893a3;
   --color-cancelled-text: #b30021;
+  /*shadows*/
+  --shadow-light: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
+  --shadow-dark: 4px 4px 8px #0b1120, -4px -4px 8px #1e293b;
+  --shadow-inset-light: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+  --shadow-inset-dark: inset 4px 4px 8px #0b1120, inset -4px -4px 8px #1e293b;
+  /*btns*/
+  --color-linear-1: linear-gradient(90deg, #30c5ed, #28e55d);
+  --color-linear-2: linear-gradient(90deg, #2e9eef, #9c33f7);
+  --color-linear-3: linear-gradient(90deg, #ff3571, #880175);
+  --color-shadow-btn: #00000033;
+  /*neomorphism*/
+  --bg-light: #f8fafc;
+  --bg-dark: #0f172a;
+  --bg-text: #0f172a;
+  --hover-bg: #bbf7d0;
+  --hover-text: #0f4636;
+  --color-background-light: #00000005;
+  --color-background-overlay: #ffffff0d;
 }
 
 body.dark-theme {
