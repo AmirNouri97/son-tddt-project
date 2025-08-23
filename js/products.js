@@ -23,7 +23,7 @@ fetch("http://localhost:3000/products")
     let sortOrder = "";
     const productsQTY = products.length;
     const availableStateProduct = $.querySelector("#available");
-
+    const tableAddNewItemBtn = $.querySelector(".table__add__new__item");
     // let itemPerPage = parseInt(tableQty.value, 10) || 5;
     // let itemPerPage = parseInt(tableQty.value, 10) ?? 0;
     let itemPerPage = Number(tableQty.value) ?? 0;
@@ -45,6 +45,50 @@ fetch("http://localhost:3000/products")
       updateActivePageUI();
     }
 
+    tableAddNewItemBtn.addEventListener("click", () => {
+      addNewItem(products.length + 1);
+    });
+    function addNewItem(lastId) {
+      $.querySelector(".add__modal").classList.remove("hidden");
+      document.querySelector(".overlay").classList.remove("hidden");
+      const addModalConfirmBtn = document.querySelector(
+        ".add__modal--confirm__btn"
+      );
+      const addModalCancelBtn = document.querySelector(
+        ".add__modal--cancel__btn"
+      );
+      addModalConfirmBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("mmd");
+
+        const newItem = {
+          id: String(lastId),
+          name: $.getElementById("modal-new-name").value || "نامشخص",
+          image:
+            $.getElementById("modal-new-img").value ||
+            "/public/assets/icons/product-test-img.svg",
+          count: $.getElementById("modal-new-qty").value || 0,
+          price: $.getElementById("modal-new-price").value || "0",
+          date: $.getElementById("modal-new-date").value || "1404/01/01",
+          inStock: $.getElementById("modal-new-available").value,
+        };
+        fetch(`http://localhost:3000/products`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newItem),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            $.querySelector(".add__modal").classList.add("hidden");
+            document.querySelector(".overlay").classList.add("hidden");
+            console.log(data);
+          });
+      });
+      addModalCancelBtn.addEventListener("click", () => {
+        $.querySelector(".add__modal").classList.add("hidden");
+        document.querySelector(".overlay").classList.add("hidden");
+      });
+    }
     function showRows(data = copyProducts) {
       tableBody.textContent = "";
       const startIndex = (currentPage - 1) * itemPerPage;
@@ -107,7 +151,9 @@ fetch("http://localhost:3000/products")
           price: document.getElementById("modal-price").value,
           count: document.getElementById("modal-qty").value,
           date: document.getElementById("modal-date").value,
-          image: document.getElementById("modal-img").value,
+          image:
+            document.getElementById("modal-img").value ||
+            "/public/assets/icons/product-test-img.svg",
         };
 
         fetch(`http://localhost:3000/products/${id}`, {
@@ -165,7 +211,9 @@ fetch("http://localhost:3000/products")
       SideBarConfirmBtn.addEventListener("click", () => {
         const changedItem = {
           id: id,
-          image: document.getElementById("sideBar-img").value,
+          image:
+            document.getElementById("sideBar-img").value ||
+            "/public/assets/icons/product-test-img.svg",
           name: document.getElementById("sideBar-name").value,
           count: document.getElementById("sideBar-qty").value,
           price: document.getElementById("sideBar-price").value,

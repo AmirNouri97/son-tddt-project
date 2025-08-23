@@ -170,7 +170,7 @@ tbody tr:nth-child(even) {
   color: var(--color-theme-text);
   font-size: 20px;
   font-weight: 600;
-  width: 75%;
+  width: 60%;
 }
 .table__qty {
   padding: 20px;
@@ -316,4 +316,14 @@ select {
 }
 .edit__sideBar.sideBar__show {
   left: 0;
+}
+.table__add__new__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  padding: 10px 16px;
+  background-color: var(--color-theme-link-active);
+  border-radius: 8px;
+  cursor: pointer;
 }
