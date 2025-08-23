@@ -1,290 +1,11 @@
 const $ = document;
 
-// const products = [
-//   {
-//     id: 1,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "لپ‌تاپ",
-//     count: 0,
-//     price: "78,235,000",
-//     date: "1403/10/07",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 2,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "ماوس",
-//     count: 0,
-//     price: "8,600,000",
-//     date: "1404/02/19",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 3,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "هارد اکسترنال",
-//     count: 210,
-//     price: "12,300,000",
-//     date: "1404/03/02",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 4,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "تبلت",
-//     count: 62,
-//     price: "24,400,000",
-//     date: "1403/07/14",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 5,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "فلش مموری",
-//     count: 0,
-//     price: "1,200,000",
-//     date: "1402/12/26",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 6,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مانیتور",
-//     count: 0,
-//     price: "15,870,000",
-//     date: "1404/01/18",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 7,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مودم همراه",
-//     count: 0,
-//     price: "5,600,000",
-//     date: "1404/08/23",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 8,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "موبایل",
-//     count: 478,
-//     price: "49,999,000",
-//     date: "1403/11/11",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 9,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "کیبورد",
-//     count: 184,
-//     price: "3,200,000",
-//     date: "1404/04/04",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 10,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "ساعت هوشمند",
-//     count: 0,
-//     price: "18,999,000",
-//     date: "1403/09/30",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 11,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "آمبولانس ",
-//     count: 0,
-//     price: "28,450,000",
-//     date: "1404/03/25",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 12,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مودم",
-//     count: 90,
-//     price: "5,600,000",
-//     date: "1404/02/13",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 13,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "هدست",
-//     count: 0,
-//     price: "12,750,000",
-//     date: "1404/01/30",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 14,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "پرینتر",
-//     count: 0,
-//     price: "31,200,000",
-//     date: "1404/04/07",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 15,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "کارت حافظه",
-//     count: 58,
-//     price: "2,150,000",
-//     date: "1404/05/01",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 16,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "رم لپ‌تاپ",
-//     count: 0,
-//     price: "9,800,000",
-//     date: "1404/06/20",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 17,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "هاب USB",
-//     count: 110,
-//     price: "3,450,000",
-//     date: "1404/03/14",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 18,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "پاور بانک",
-//     count: 0,
-//     price: "7,100,000",
-//     date: "1404/02/08",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 19,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "میکروفون",
-//     count: 72,
-//     price: "11,900,000",
-//     date: "1404/03/18",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 20,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "قلم نوری",
-//     count: 0,
-//     price: "16,300,000",
-//     date: "1404/04/02",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 21,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مانیتور",
-//     count: 0,
-//     price: "45,600,000",
-//     date: "1404/03/15",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 22,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "ماوس بی‌سیم",
-//     count: 84,
-//     price: "3,200,000",
-//     date: "1404/05/10",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 23,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "صفحه کلید مکانیکی",
-//     count: 0,
-//     price: "6,950,000",
-//     date: "1404/04/12",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 24,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "فلش مموری",
-//     count: 140,
-//     price: "1,250,000",
-//     date: "1404/03/05",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 25,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "اسپیکر بلوتوثی",
-//     count: 0,
-//     price: "5,700,000",
-//     date: "1404/01/29",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 26,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "پروژکتور",
-//     count: 0,
-//     price: "35,000,000",
-//     date: "1404/02/18",
-//     inStock: "درحال تامین",
-//   },
-//   {
-//     id: 27,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "وب‌کم",
-//     count: 60,
-//     price: "8,350,000",
-//     date: "1404/04/22",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 28,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "موس پد گیمینگ",
-//     count: 72,
-//     price: "1,800,000",
-//     date: "1404/03/28",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 29,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مچ‌بند هوشمند",
-//     count: 0,
-//     price: "9,400,000",
-//     date: "1404/05/03",
-//     inStock: "خیر",
-//   },
-//   {
-//     id: 30,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مبدل Type-C",
-//     count: 95,
-//     price: "850,000",
-//     date: "1404/02/05",
-//     inStock: "بله",
-//   },
-//   {
-//     id: 31,
-//     image: "/public/assets/icons/product-test-img.svg",
-//     name: "مبدل Type-d",
-//     count: 90,
-//     price: "850,000",
-//     date: "1404/02/05",
-//     inStock: "بله",
-//   },
-// ];
 let products = [];
 fetch("http://localhost:3000/products")
   .then((res) => res.json())
   .then((data) => {
+    console.log(data);
+
     products = data;
     let finalData;
     let copyProducts = products.slice();
@@ -329,7 +50,7 @@ fetch("http://localhost:3000/products")
       const startIndex = (currentPage - 1) * itemPerPage;
       const endIndex = startIndex + itemPerPage;
       console.log(startIndex, endIndex);
-      console.log(copyProducts);
+      // console.log(copyProducts);
 
       const productForCurrentPage = data.slice(startIndex, endIndex);
       finalData = productForCurrentPage.slice();
@@ -355,8 +76,38 @@ fetch("http://localhost:3000/products")
     function showModifyNewPage() {
       console.log("showModifyNewPage");
     }
-    function removeRowHandler() {
+    function removeRowHandler(id) {
       console.log("removeRowHandler");
+      document.querySelector(".overlay").classList.remove("hidden");
+      document.querySelector(".delete__modal").classList.remove("hidden");
+      const confirmBtn = document.querySelector(".delete__modal--confirm__btn");
+      const cancelBtn = document.querySelector(".delete__modal--cancel__btn");
+      confirmBtn.addEventListener("click", () => {
+        fetch(`http://localhost:3000/products/${Number(id)}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("delete was not done!");
+            }
+            products = products.filter((item) => item.id !== id);
+            console.log(products);
+
+            copyProducts = copyProducts.filter((item) => item.id !== id);
+
+            pagesNumber = Math.ceil(copyProducts.length / itemPerPage);
+            if (currentPage > pagesNumber) pagesNumber = currentPage;
+            renderPagination();
+            showRows();
+            document.querySelector(".overlay").classList.add("hidden");
+            document.querySelector(".delete__modal").classList.add("hidden");
+          })
+          .catch((err) => console.error(err));
+      });
+      cancelBtn.addEventListener("click", () => {
+        document.querySelector(".overlay").classList.add("hidden");
+        document.querySelector(".delete__modal").classList.add("hidden");
+      });
     }
 
     function createRow(item) {
@@ -432,7 +183,7 @@ fetch("http://localhost:3000/products")
       removeRowBtn.textContent = "حذف";
       removeRowBtn.classList.add("action__btn");
       removeRowBtn.classList.add("remove__row__btn");
-      removeRowBtn.addEventListener("click", removeRowHandler);
+      removeRowBtn.addEventListener("click", () => removeRowHandler(item.id));
       tdActionBtns.appendChild(removeRowBtn);
 
       tr.appendChild(tdActionBtns);

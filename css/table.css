@@ -42,7 +42,7 @@ table tbody td:nth-child(2) img {
 }
 th:nth-child(1),
 td:nth-child(1) {
-  width: 3%;
+  width: 4%;
 }
 th:nth-child(2),
 td:nth-child(2) {
@@ -221,4 +221,44 @@ svg {
 .remove__row__btn {
   background-color: var(--color-cancelled);
   border-color: var(--color-cancelled-text);
+}
+.delete__modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--color-white);
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  gap: 32px;
+}
+.modal__btns__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.modal__btns__wrapper button {
+  width: 80px;
+  height: 32px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+.hidden {
+  display: none;
 }

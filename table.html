@@ -64,6 +64,13 @@
             </thead>
             <tbody></tbody>
           </table>
+          <div class="delete__modal hidden">
+            <h2>آیا از حذف این ردیف مطمئن هستید؟</h2>
+            <div class="modal__btns__wrapper">
+              <button class="delete__modal--confirm__btn">بله</button>
+              <button class="delete__modal--cancel__btn">انصراف</button>
+            </div>
+          </div>
         </div>
       </section>
       <section class="pagination__wrapper">
@@ -138,6 +145,7 @@
         </div>
       </section>
     </main>
+    <div class="overlay hidden"></div>
     <div id="footer-placeHolder"></div>
   </body>
   <script src="./js/script.js"></script>
