@@ -341,6 +341,19 @@ function updateActivePageUI() {
   if (activeBtn) activeBtn.classList.add("active");
 }
 
+function showModifyModal() {
+  console.log("showModifyModal");
+}
+function showModifySideBar() {
+  console.log("showModifySideBar");
+}
+function showModifyNewPage() {
+  console.log("showModifyNewPage");
+}
+function removeRowHandler() {
+  console.log("removeRowHandler");
+}
+
 function createRow(item) {
   // console.log(item);
 
@@ -388,7 +401,36 @@ function createRow(item) {
 
   tdInStock.appendChild(spanInStock);
   tr.appendChild(tdInStock);
+  /*action btns*/
+  const tdActionBtns = $.createElement("td");
+  /*modal */
+  const modalModifyBtn = document.createElement("button");
+  modalModifyBtn.textContent = "مودال";
+  modalModifyBtn.classList.add("action__btn");
+  modalModifyBtn.addEventListener("click", showModifyModal);
+  tdActionBtns.appendChild(modalModifyBtn);
+  /*sidebar*/
+  const sideBarModifyBtn = document.createElement("button");
+  sideBarModifyBtn.textContent = "ساید بار";
+  sideBarModifyBtn.classList.add("action__btn");
+  sideBarModifyBtn.addEventListener("click", showModifySideBar);
+  tdActionBtns.appendChild(sideBarModifyBtn);
+  /*new page */
+  const newPageModifyBtn = document.createElement("button");
+  newPageModifyBtn.textContent = "صفحه";
+  newPageModifyBtn.classList.add("action__btn");
+  // newPageModifyBtn.classList.add(".modify__row__btn");
+  newPageModifyBtn.addEventListener("click", showModifyNewPage);
+  tdActionBtns.appendChild(newPageModifyBtn);
+  /*remove row*/
+  const removeRowBtn = document.createElement("button");
+  removeRowBtn.textContent = "حذف";
+  removeRowBtn.classList.add("action__btn");
+  removeRowBtn.classList.add("remove__row__btn");
+  removeRowBtn.addEventListener("click", removeRowHandler);
+  tdActionBtns.appendChild(removeRowBtn);
 
+  tr.appendChild(tdActionBtns);
   tableBody.appendChild(tr);
 }
 

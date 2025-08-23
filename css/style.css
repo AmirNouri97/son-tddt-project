@@ -60,6 +60,7 @@
   --color-pending-text: #916d03;
   --color-cancelled: #d893a3;
   --color-cancelled-text: #b30021;
+  /* --color-modify: #3babf6; */
   /*shadows*/
   --shadow-light: 4px 4px 8px #d1d9e6, -4px -4px 8px #ffffff;
   --shadow-dark: 4px 4px 8px #0b1120, -4px -4px 8px #1e293b;
