@@ -19,6 +19,7 @@
       <section class="table__wrapper">
         <div class="table__top">
           <div class="table__title">لیست محصولات</div>
+          <div class="table__add__new__item">اضافه نمودن محصول</div>
           <div class="table__qty">
             <label for="table__qty-id">تعداد در هر صفحه</label>
             <select name="tableQTY" id="table__qty-id">
@@ -59,10 +60,246 @@
                     </select></span
                   >
                 </th>
+                <th>تغییر دادن</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
+          <div class="delete__modal modal hidden">
+            <h2>آیا از حذف این ردیف مطمئن هستید؟</h2>
+            <div class="modal__btns__wrapper">
+              <button class="delete__modal--confirm__btn">بله</button>
+              <button class="delete__modal--cancel__btn">انصراف</button>
+            </div>
+          </div>
+          <div class="edit__modal modal hidden">
+            <form action="#" id="modify-form">
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر نام محصول -->
+                <label for="modal-name" class="edit__modal--label"
+                  >نام محصول</label
+                >
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-name"
+                  required
+                />
+              </div>
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر عکس محصول -->
+                <label for="modal-img" class="edit__modal--label"
+                  >عکس محصول</label
+                >
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="edit__modal--input"
+                  id="modal-img"
+                />
+              </div>
+
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر تعداد محصول -->
+                <label for="modal-qty" class="edit__modal--label">تعداد</label
+                ><input
+                  type="number"
+                  class="edit__modal--input"
+                  id="modal-qty"
+                  required
+                  min="0"
+                />
+                <!-- تغییر قیمت محصول -->
+                <label for="modal-price" class="edit__modal--label">قیمت</label>
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-price"
+                  required
+                />
+              </div>
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر تاریخ محصول -->
+                <label for="modal-date" class="edit__modal--label">تاریخ</label>
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-date"
+                  required
+                />
+                <!-- تغییر موجود بودن محصول -->
+                <label for="modal-available" class="edit__modal--label"
+                  >موجودی</label
+                >
+                <select name="" id="modal-available">
+                  <option value="بله">بله</option>
+                  <option value="خیر">خیر</option>
+                  <option value="درحال تامین">درحال تامین</option>
+                </select>
+              </div>
+
+              <h2>آیا از تغییر این ردیف مطمئن هستید؟</h2>
+              <div class="modal__btns__wrapper">
+                <button type="submit" class="edit__modal--confirm__btn">
+                  بله
+                </button>
+                <button class="edit__modal--cancel__btn">انصراف</button>
+              </div>
+            </form>
+          </div>
+          <!-- add New Item Modal -->
+          <div class="add__modal modal hidden">
+            <form action="#" id="new-item-form">
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر نام محصول -->
+                <label for="modal-new-name" class="edit__modal--label"
+                  >نام محصول</label
+                >
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-new-name"
+                  placeholder="هندزفری"
+                />
+              </div>
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر عکس محصول -->
+                <label for="modal-new-img" class="edit__modal--label"
+                  >عکس محصول</label
+                >
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="edit__modal--input"
+                  id="modal-new-img"
+                />
+              </div>
+
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر تعداد محصول -->
+                <label for="modal-new-qty" class="edit__modal--label"
+                  >تعداد</label
+                ><input
+                  type="number"
+                  class="edit__modal--input"
+                  id="modal-new-qty"
+                  min="0"
+                  placeholder="0"
+                />
+                <!-- تغییر قیمت محصول -->
+                <label for="modal-new-price" class="edit__modal--label"
+                  >قیمت</label
+                >
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-new-price"
+                  placeholder="10,000"
+                />
+              </div>
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر تاریخ محصول -->
+                <label for="modal-new-date" class="edit__modal--label"
+                  >تاریخ</label
+                >
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-new-date"
+                  placeholder="1400/01/01"
+                />
+                <!-- تغییر موجود بودن محصول -->
+                <label for="modal-new-available" class="edit__modal--label"
+                  >موجودی</label
+                >
+                <select name="" id="modal-new-available">
+                  <option value="بله">بله</option>
+                  <option value="خیر">خیر</option>
+                  <option value="درحال تامین">درحال تامین</option>
+                </select>
+              </div>
+
+              <h2>آیا از اضافه نمودن این ردیف مطمئن هستید؟</h2>
+              <div class="modal__btns__wrapper">
+                <button type="submit" class="add__modal--confirm__btn">
+                  بله
+                </button>
+                <button class="add__modal--cancel__btn">انصراف</button>
+              </div>
+            </form>
+          </div>
+          <!-- add New Item Modal -->
+          <!-- sidebar -->
+          <div class="edit__sideBar">
+            <form action="#" id="modify-form-sideBar">
+              <!-- تغییر نام محصول -->
+              <label for="sideBar-name" class="edit__modal--label"
+                >نام محصول</label
+              >
+              <input
+                type="text"
+                class="edit__modal--input"
+                id="sideBar-name"
+                required
+              />
+
+              <!-- تغییر عکس محصول -->
+              <label for="sideBar-img" class="edit__modal--label"
+                >عکس محصول</label
+              >
+              <input
+                type="file"
+                accept="image/*"
+                class="edit__modal--input"
+                id="sideBar-img"
+              />
+
+              <!-- تغییر تعداد محصول -->
+              <label for="sideBar-qty" class="edit__modal--label">تعداد</label
+              ><input
+                type="number"
+                class="edit__modal--input"
+                id="sideBar-qty"
+                required
+                min="0"
+              />
+              <!-- تغییر قیمت محصول -->
+              <label for="sideBar-price" class="edit__modal--label">قیمت</label>
+              <input
+                type="text"
+                class="edit__modal--input"
+                id="sideBar-price"
+                required
+              />
+
+              <!-- تغییر تاریخ محصول -->
+              <label for="sideBar-date" class="edit__modal--label">تاریخ</label>
+              <input
+                type="text"
+                class="edit__modal--input"
+                id="sideBar-date"
+                required
+              />
+              <!-- تغییر موجود بودن محصول -->
+              <label for="sideBar-available" class="edit__modal--label"
+                >موجودی</label
+              >
+              <select name="" id="sideBar-available">
+                <option value="بله">بله</option>
+                <option value="خیر">خیر</option>
+                <option value="درحال تامین">درحال تامین</option>
+              </select>
+
+              <h2>آیا از تغییر این ردیف مطمئن هستید؟</h2>
+              <div class="modal__btns__wrapper">
+                <button type="submit" class="edit__sideBar--confirm__btn">
+                  بله
+                </button>
+                <button class="edit__sideBar--cancel__btn">انصراف</button>
+              </div>
+            </form>
+          </div>
+          <!-- sidebar -->
         </div>
       </section>
       <section class="pagination__wrapper">
@@ -137,6 +374,7 @@
         </div>
       </section>
     </main>
+    <div class="overlay hidden"></div>
     <div id="footer-placeHolder"></div>
   </body>
   <script src="./js/script.js"></script>
