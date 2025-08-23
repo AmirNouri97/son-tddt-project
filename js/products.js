@@ -131,8 +131,62 @@ fetch("http://localhost:3000/products")
         document.querySelector(".edit__modal").classList.add("hidden");
       });
     }
-    function showModifySideBar() {
+    function showModifySideBar(id) {
       console.log("showModifySideBar");
+      const sidebar = document.querySelector(".edit__sideBar");
+      sidebar.classList.add("sideBar__show");
+      document.querySelector(".overlay").classList.remove("hidden");
+
+      const SideBarConfirmBtn = document.querySelector(
+        ".edit__sideBar--confirm__btn"
+      );
+      const sideBarCancelBtn = document.querySelector(
+        ".edit__sideBar--cancel__btn"
+      );
+      const sideBarImg = document.getElementById("sideBar-img");
+      const sideBarName = document.getElementById("sideBar-name");
+      const sideBarQty = document.getElementById("sideBar-qty");
+      const sideBarPrice = document.getElementById("sideBar-price");
+      const sideBarDate = document.getElementById("sideBar-date");
+      const sideBarAvailable = document.getElementById("sideBar-available");
+
+      let selectedItem = products.filter((item) => item.id === id);
+      sideBarName.value = selectedItem[0].name;
+      sideBarQty.value = selectedItem[0].count;
+      sideBarPrice.value = selectedItem[0].price;
+      sideBarDate.value = selectedItem[0].date;
+      sideBarAvailable.value = selectedItem[0].inStock;
+
+      sideBarCancelBtn.addEventListener("click", () => {
+        sidebar.classList.remove("sideBar__show");
+        document.querySelector(".overlay").classList.add("hidden");
+      });
+
+      SideBarConfirmBtn.addEventListener("click", () => {
+        const changedItem = {
+          id: id,
+          image: document.getElementById("sideBar-img").value,
+          name: document.getElementById("sideBar-name").value,
+          count: document.getElementById("sideBar-qty").value,
+          price: document.getElementById("sideBar-price").value,
+          date: document.getElementById("sideBar-date").value,
+          inStock: document.getElementById("sideBar-available").value,
+        };
+        fetch(`http://localhost:3000/products/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(changedItem),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("updated");
+            document.querySelector(".overlay").classList.add("hidden");
+            sidebar.classList.remove("sideBar__show");
+          })
+          .catch((err) => console.error(err));
+      });
     }
     function showModifyNewPage() {
       console.log("showModifyNewPage");
@@ -230,7 +284,9 @@ fetch("http://localhost:3000/products")
       const sideBarModifyBtn = document.createElement("button");
       sideBarModifyBtn.textContent = "ساید بار";
       sideBarModifyBtn.classList.add("action__btn");
-      sideBarModifyBtn.addEventListener("click", showModifySideBar);
+      sideBarModifyBtn.addEventListener("click", () =>
+        showModifySideBar(item.id)
+      );
       tdActionBtns.appendChild(sideBarModifyBtn);
       /*new page */
       const newPageModifyBtn = document.createElement("button");

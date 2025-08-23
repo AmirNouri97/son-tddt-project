@@ -146,6 +146,77 @@
               </div>
             </form>
           </div>
+          <!-- sidebar -->
+          <div class="edit__sideBar">
+            <form action="#" id="modify-form-sideBar">
+              <!-- تغییر نام محصول -->
+              <label for="sideBar-name" class="edit__modal--label"
+                >نام محصول</label
+              >
+              <input
+                type="text"
+                class="edit__modal--input"
+                id="sideBar-name"
+                required
+              />
+
+              <!-- تغییر عکس محصول -->
+              <label for="sideBar-img" class="edit__modal--label"
+                >عکس محصول</label
+              >
+              <input
+                type="file"
+                accept="image/*"
+                class="edit__modal--input"
+                id="sideBar-img"
+              />
+
+              <!-- تغییر تعداد محصول -->
+              <label for="sideBar-qty" class="edit__modal--label">تعداد</label
+              ><input
+                type="number"
+                class="edit__modal--input"
+                id="sideBar-qty"
+                required
+                min="0"
+              />
+              <!-- تغییر قیمت محصول -->
+              <label for="sideBar-price" class="edit__modal--label">قیمت</label>
+              <input
+                type="text"
+                class="edit__modal--input"
+                id="sideBar-price"
+                required
+              />
+
+              <!-- تغییر تاریخ محصول -->
+              <label for="sideBar-date" class="edit__modal--label">تاریخ</label>
+              <input
+                type="text"
+                class="edit__modal--input"
+                id="sideBar-date"
+                required
+              />
+              <!-- تغییر موجود بودن محصول -->
+              <label for="sideBar-available" class="edit__modal--label"
+                >موجودی</label
+              >
+              <select name="" id="sideBar-available">
+                <option value="بله">بله</option>
+                <option value="خیر">خیر</option>
+                <option value="درحال تامین">درحال تامین</option>
+              </select>
+
+              <h2>آیا از تغییر این ردیف مطمئن هستید؟</h2>
+              <div class="modal__btns__wrapper">
+                <button type="submit" class="edit__sideBar--confirm__btn">
+                  بله
+                </button>
+                <button class="edit__sideBar--cancel__btn">انصراف</button>
+              </div>
+            </form>
+          </div>
+          <!-- sidebar -->
         </div>
       </section>
       <section class="pagination__wrapper">
