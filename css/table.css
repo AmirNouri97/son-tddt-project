@@ -222,13 +222,15 @@ svg {
   background-color: var(--color-cancelled);
   border-color: var(--color-cancelled-text);
 }
-.delete__modal {
+.modal {
+  margin-top: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 150px;
+  min-width: 500px;
+  height: auto;
+  padding: 32px 48px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -238,6 +240,7 @@ svg {
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
   gap: 32px;
+  border: 10px solid var(--color-theme-link-active);
 }
 .modal__btns__wrapper {
   display: flex;
@@ -261,4 +264,25 @@ svg {
 }
 .hidden {
   display: none;
+}
+.modal__wrapper__inputs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+input,
+select {
+  border: 1px solid black;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+#modal-name {
+  width: 80%;
+}
+.modal form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 32px;
 }

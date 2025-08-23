@@ -67,8 +67,69 @@ fetch("http://localhost:3000/products")
       if (activeBtn) activeBtn.classList.add("active");
     }
 
-    function showModifyModal() {
+    function showModifyModal(id) {
       console.log("showModifyModal");
+      document.querySelector(".overlay").classList.remove("hidden");
+      document.querySelector(".edit__modal").classList.remove("hidden");
+      const confirmBtn = document.querySelector(".edit__modal--confirm__btn");
+      const cancelBtn = document.querySelector(".edit__modal--cancel__btn");
+      //confirm
+      const modalName = document.getElementById("modal-name");
+      const modalImg = document.getElementById("modal-img");
+      const modalAvailable = document.getElementById("modal-available");
+      const modalQty = document.getElementById("modal-qty");
+      const modalPrice = document.getElementById("modal-price");
+      const modalDate = document.getElementById("modal-date");
+      let selectedItem = products.filter((item) => item.id === id);
+      // console.log(selectedItem);
+      // modalImg.value = selectedItem[0].image;
+      modalName.value = selectedItem[0].name;
+      modalQty.value = selectedItem[0].count;
+      modalPrice.value = selectedItem[0].price;
+      modalDate.value = selectedItem[0].date;
+      modalAvailable.value = selectedItem[0].inStock;
+      const modifyForm = document.querySelector("#modify-form");
+
+      confirmBtn.addEventListener("click", (e) => {
+        modifyForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+        });
+
+        const priceInput = document.getElementById("modal-price");
+        const formattedPrice = Number(priceInput).toLocaleString("fa-IR");
+        // const formattedPrice = Number(priceInput).toLocaleString("en-US");
+        console.log(formattedPrice);
+
+        const changedItem = {
+          id: id,
+          name: document.getElementById("modal-name").value,
+          inStock: document.getElementById("modal-available").value,
+          price: document.getElementById("modal-price").value,
+          count: document.getElementById("modal-qty").value,
+          date: document.getElementById("modal-date").value,
+          image: document.getElementById("modal-img").value,
+        };
+
+        fetch(`http://localhost:3000/products/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(changedItem),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("updated");
+            document.querySelector(".overlay").classList.add("hidden");
+            document.querySelector(".edit__modal").classList.add("hidden");
+          })
+          .catch((err) => console.error(err));
+      });
+      //cancel
+      cancelBtn.addEventListener("click", () => {
+        document.querySelector(".overlay").classList.add("hidden");
+        document.querySelector(".edit__modal").classList.add("hidden");
+      });
     }
     function showModifySideBar() {
       console.log("showModifySideBar");
@@ -83,7 +144,7 @@ fetch("http://localhost:3000/products")
       const confirmBtn = document.querySelector(".delete__modal--confirm__btn");
       const cancelBtn = document.querySelector(".delete__modal--cancel__btn");
       confirmBtn.addEventListener("click", () => {
-        fetch(`http://localhost:3000/products/${Number(id)}`, {
+        fetch(`http://localhost:3000/products/${id}`, {
           method: "DELETE",
         })
           .then((res) => {
@@ -135,7 +196,7 @@ fetch("http://localhost:3000/products")
       tr.appendChild(tdCount);
 
       const tdPrice = $.createElement("td");
-      tdPrice.textContent = item.price;
+      tdPrice.textContent = Number(item.price).toLocaleString("fa-IR");
       tr.appendChild(tdPrice);
 
       const tdDate = $.createElement("td");
@@ -163,7 +224,7 @@ fetch("http://localhost:3000/products")
       const modalModifyBtn = document.createElement("button");
       modalModifyBtn.textContent = "مودال";
       modalModifyBtn.classList.add("action__btn");
-      modalModifyBtn.addEventListener("click", showModifyModal);
+      modalModifyBtn.addEventListener("click", () => showModifyModal(item.id));
       tdActionBtns.appendChild(modalModifyBtn);
       /*sidebar*/
       const sideBarModifyBtn = document.createElement("button");
