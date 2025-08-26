@@ -20,6 +20,9 @@ const headerHTML = `<header><section class="header__top d-flex">
                 <a href="tree.html" class="nav-link">درخت</a>
               </li>
               <li class="navbar__link">
+                <a href="editFormPage.html" class="nav-link">تغییر ایتم</a>
+              </li>
+              <li class="navbar__link">
                 <a href="resume.html" class="nav-link">درباره من</a>
               </li>
             </ul>

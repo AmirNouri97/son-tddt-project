@@ -1,12 +1,14 @@
 const $ = document;
 
 let products = [];
-fetch("http://localhost:3000/products")
-  .then((res) => res.json())
-  .then((data) => {
+async function init() {
+  try {
+    const res = await fetch("http://localhost:3000/products");
+    const data = await res.json();
+    products = data;
+
     console.log(data);
 
-    products = data;
     let finalData;
     let copyProducts = products.slice();
     const tableQty = $.querySelector("#table__qty-id");
@@ -29,6 +31,7 @@ fetch("http://localhost:3000/products")
     let itemPerPage = Number(tableQty.value) ?? 0;
     let pagesNumber = Math.ceil(productsQTY / itemPerPage);
     let currentPage = 1;
+    let uploadedImage = "";
 
     let allPageNumbers = [];
     function clearSpanInner() {
@@ -44,19 +47,59 @@ fetch("http://localhost:3000/products")
       showRows();
       updateActivePageUI();
     }
+    function changeImgToBase64(fileInputId, imgId, callBack) {
+      const fileInput = document.getElementById(fileInputId);
+      const imgPreview = document.getElementById(imgId);
 
+      fileInput.addEventListener("change", (e) => {
+        const file = fileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const base64Img = e.target.result;
+            if (imgPreview) {
+              imgPreview.src = base64Img;
+            }
+            if (callBack && typeof callBack === "function") {
+              callBack(base64Img);
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+    let uploadedImageModal = "";
+    changeImgToBase64("modal-img", "modal-img-preview", (base64) => {
+      uploadedImageModal = base64;
+    });
+
+    let uploadedImageNew = "";
+    changeImgToBase64("modal-new-img", "modal-new-img-preview", (base64) => {
+      uploadedImageNew = base64;
+    });
+
+    let uploadedImageSideBar = "";
+    changeImgToBase64("sideBar-img", "sideBar-preview", (base64) => {
+      uploadedImageSideBar = base64;
+    });
     tableAddNewItemBtn.addEventListener("click", () => {
-      addNewItem(products.length + 1);
+      console.log(products[products.length - 1].id);
+
+      addNewItem(String(Number(products[products.length - 1].id) + 1));
     });
     function addNewItem(lastId) {
       $.querySelector(".add__modal").classList.remove("hidden");
-      document.querySelector(".overlay").classList.remove("hidden");
-      const addModalConfirmBtn = document.querySelector(
-        ".add__modal--confirm__btn"
+      $.querySelector(".overlay").classList.remove("hidden");
+
+      const addModalConfirmBtn = $.querySelector(".add__modal--confirm__btn");
+      const addModalCancelBtn = $.querySelector(".add__modal--cancel__btn");
+
+      changeImgToBase64(
+        "modal-new-img",
+        "modal-new-img-preview",
+        (b64) => (uploadedImageNew = b64)
       );
-      const addModalCancelBtn = document.querySelector(
-        ".add__modal--cancel__btn"
-      );
+
       addModalConfirmBtn.addEventListener("click", (e) => {
         e.preventDefault();
         console.log("mmd");
@@ -65,8 +108,7 @@ fetch("http://localhost:3000/products")
           id: String(lastId),
           name: $.getElementById("modal-new-name").value || "نامشخص",
           image:
-            $.getElementById("modal-new-img").value ||
-            "/public/assets/icons/product-test-img.svg",
+            uploadedImageNew || "/public/assets/icons/product-test-img.svg",
           count: $.getElementById("modal-new-qty").value || 0,
           price: $.getElementById("modal-new-price").value || "0",
           date: $.getElementById("modal-new-date").value || "1404/01/01",
@@ -82,11 +124,13 @@ fetch("http://localhost:3000/products")
             $.querySelector(".add__modal").classList.add("hidden");
             document.querySelector(".overlay").classList.add("hidden");
             console.log(data);
+            addModalConfirmBtn.removeEventListener("click", handleConfirm);
           });
       });
       addModalCancelBtn.addEventListener("click", () => {
         $.querySelector(".add__modal").classList.add("hidden");
         document.querySelector(".overlay").classList.add("hidden");
+        addModalCancelBtn.removeEventListener("click", handleConfirm);
       });
     }
     function showRows(data = copyProducts) {
@@ -132,44 +176,64 @@ fetch("http://localhost:3000/products")
       modalPrice.value = selectedItem[0].price;
       modalDate.value = selectedItem[0].date;
       modalAvailable.value = selectedItem[0].inStock;
+      modalImg.src = selectedItem[0].image;
       const modifyForm = document.querySelector("#modify-form");
+      uploadedImageModal = selectedItem[0].image;
+
+      changeImgToBase64(
+        "modal-img",
+        "modal-img-preview",
+        (b64) => (uploadedImageModal = b64)
+      );
 
       confirmBtn.addEventListener("click", (e) => {
         modifyForm.addEventListener("submit", (e) => {
           e.preventDefault();
+
+          const priceInput = document.getElementById("modal-price");
+          const formattedPrice = Number(priceInput.value).toLocaleString(
+            "fa-IR"
+          );
+          // const formattedPrice = Number(priceInput).toLocaleString("en-US");
+          console.log(formattedPrice);
+          if (
+            document.getElementById("modal-name").value &&
+            document.getElementById("modal-qty").value &&
+            document.getElementById("modal-price").value &&
+            document.getElementById("modal-date").value &&
+            document.getElementById("modal-available").value
+          ) {
+            const changedItem = {
+              id: id,
+              name: document.getElementById("modal-name").value,
+              inStock:
+                Number(document.getElementById("modal-qty").value) === 0
+                  ? "خیر"
+                  : "بله",
+              price: document.getElementById("modal-price").value,
+              count: document.getElementById("modal-qty").value,
+              date: document.getElementById("modal-date").value,
+              image:
+                uploadedImageModal ||
+                "/public/assets/icons/product-test-img.svg",
+            };
+
+            fetch(`http://localhost:3000/products/${id}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(changedItem),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("updated");
+                document.querySelector(".overlay").classList.add("hidden");
+                document.querySelector(".edit__modal").classList.add("hidden");
+              })
+              .catch((err) => console.error(err));
+          }
         });
-
-        const priceInput = document.getElementById("modal-price");
-        const formattedPrice = Number(priceInput).toLocaleString("fa-IR");
-        // const formattedPrice = Number(priceInput).toLocaleString("en-US");
-        console.log(formattedPrice);
-
-        const changedItem = {
-          id: id,
-          name: document.getElementById("modal-name").value,
-          inStock: document.getElementById("modal-available").value,
-          price: document.getElementById("modal-price").value,
-          count: document.getElementById("modal-qty").value,
-          date: document.getElementById("modal-date").value,
-          image:
-            document.getElementById("modal-img").value ||
-            "/public/assets/icons/product-test-img.svg",
-        };
-
-        fetch(`http://localhost:3000/products/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(changedItem),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("updated");
-            document.querySelector(".overlay").classList.add("hidden");
-            document.querySelector(".edit__modal").classList.add("hidden");
-          })
-          .catch((err) => console.error(err));
       });
       //cancel
       cancelBtn.addEventListener("click", () => {
@@ -189,13 +253,15 @@ fetch("http://localhost:3000/products")
       const sideBarCancelBtn = document.querySelector(
         ".edit__sideBar--cancel__btn"
       );
-      const sideBarImg = document.getElementById("sideBar-img");
+      // const sideBarImg = document.getElementById("sideBar-img");
       const sideBarName = document.getElementById("sideBar-name");
       const sideBarQty = document.getElementById("sideBar-qty");
       const sideBarPrice = document.getElementById("sideBar-price");
       const sideBarDate = document.getElementById("sideBar-date");
       const sideBarAvailable = document.getElementById("sideBar-available");
-
+      changeImgToBase64("sideBar-img", "sideBar-preview", (base64) => {
+        uploadedImage = base64;
+      });
       let selectedItem = products.filter((item) => item.id === id);
       sideBarName.value = selectedItem[0].name;
       sideBarQty.value = selectedItem[0].count;
@@ -209,35 +275,49 @@ fetch("http://localhost:3000/products")
       });
 
       SideBarConfirmBtn.addEventListener("click", () => {
-        const changedItem = {
-          id: id,
-          image:
-            document.getElementById("sideBar-img").value ||
-            "/public/assets/icons/product-test-img.svg",
-          name: document.getElementById("sideBar-name").value,
-          count: document.getElementById("sideBar-qty").value,
-          price: document.getElementById("sideBar-price").value,
-          date: document.getElementById("sideBar-date").value,
-          inStock: document.getElementById("sideBar-available").value,
-        };
-        fetch(`http://localhost:3000/products/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(changedItem),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("updated");
-            document.querySelector(".overlay").classList.add("hidden");
-            sidebar.classList.remove("sideBar__show");
+        const qty = Number(document.getElementById("sideBar-qty").value);
+        if (
+          sideBarName.value &&
+          sideBarQty.value &&
+          sideBarPrice.value &&
+          sideBarDate.value &&
+          sideBarAvailable.value
+        ) {
+          const changedItem = {
+            id: id,
+            image: uploadedImage || "/public/assets/icons/product-test-img.svg",
+            name: document.getElementById("sideBar-name").value,
+            count: document.getElementById("sideBar-qty").value,
+            price: document.getElementById("sideBar-price").value,
+            date: document.getElementById("sideBar-date").value,
+            inStock:
+              qty === 0
+                ? "خیر"
+                : document.getElementById("sideBar-available").value,
+          };
+          fetch(`http://localhost:3000/products/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(changedItem),
           })
-          .catch((err) => console.error(err));
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("updated");
+              document.querySelector(".overlay").classList.add("hidden");
+              sidebar.classList.remove("sideBar__show");
+            })
+            .catch((err) => console.error(err));
+        }
       });
     }
-    function showModifyNewPage() {
+    function showModifyNewPage(id) {
       console.log("showModifyNewPage");
+      console.log(id);
+
+      localStorage.setItem("selectedItem", `${id}`);
+      window.location.href = "/editFormPage.html";
     }
     function removeRowHandler(id) {
       console.log("removeRowHandler");
@@ -333,7 +413,7 @@ fetch("http://localhost:3000/products")
       sideBarModifyBtn.textContent = "ساید بار";
       sideBarModifyBtn.classList.add("action__btn");
       sideBarModifyBtn.addEventListener("click", () =>
-        showModifySideBar(item.id)
+        showModifySideBar(item.id, img)
       );
       tdActionBtns.appendChild(sideBarModifyBtn);
       /*new page */
@@ -341,7 +421,9 @@ fetch("http://localhost:3000/products")
       newPageModifyBtn.textContent = "صفحه";
       newPageModifyBtn.classList.add("action__btn");
       // newPageModifyBtn.classList.add(".modify__row__btn");
-      newPageModifyBtn.addEventListener("click", showModifyNewPage);
+      newPageModifyBtn.addEventListener("click", () =>
+        showModifyNewPage(item.id, img)
+      );
       tdActionBtns.appendChild(newPageModifyBtn);
       /*remove row*/
       const removeRowBtn = document.createElement("button");
@@ -628,4 +710,8 @@ fetch("http://localhost:3000/products")
       showRows(filtered);
       renderPagination(1);
     });
-  });
+  } catch (err) {
+    console.error("خطا در فچ:", err);
+  }
+}
+init();

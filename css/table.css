@@ -250,6 +250,9 @@ svg {
 .modal__btns__wrapper button {
   width: 80px;
   height: 32px;
+  border: 1px solid var(--color-black);
+  border-radius: 6px;
+  transition: all 300ms ease;
 }
 .overlay {
   position: absolute;
@@ -326,4 +329,14 @@ select {
   background-color: var(--color-theme-link-active);
   border-radius: 8px;
   cursor: pointer;
+  transition: all 200ms ease;
+}
+.table__add__new__item:hover {
+  transform: scale(0.97);
+}
+.modal__btns__wrapper button:first-child:hover {
+  background-color: var(--color-theme-link-active);
+}
+.modal__btns__wrapper button:last-child:hover {
+  background-color: var(--color-red);
 }
