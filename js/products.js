@@ -1,12 +1,14 @@
 const $ = document;
 
 let products = [];
-fetch("http://localhost:3000/products")
-  .then((res) => res.json())
-  .then((data) => {
+async function init() {
+  try {
+    const res = await fetch("http://localhost:3000/products");
+    const data = await res.json();
+    products = data;
+
     console.log(data);
 
-    products = data;
     let finalData;
     let copyProducts = products.slice();
     const tableQty = $.querySelector("#table__qty-id");
@@ -81,7 +83,9 @@ fetch("http://localhost:3000/products")
       uploadedImageSideBar = base64;
     });
     tableAddNewItemBtn.addEventListener("click", () => {
-      addNewItem(products.length + 1);
+      console.log(products[products.length - 1].id);
+
+      addNewItem(String(Number(products[products.length - 1].id) + 1));
     });
     function addNewItem(lastId) {
       $.querySelector(".add__modal").classList.remove("hidden");
@@ -104,8 +108,7 @@ fetch("http://localhost:3000/products")
           id: String(lastId),
           name: $.getElementById("modal-new-name").value || "نامشخص",
           image:
-            $.getElementById("modal-new-img").value ||
-            "/public/assets/icons/product-test-img.svg",
+            uploadedImageNew || "/public/assets/icons/product-test-img.svg",
           count: $.getElementById("modal-new-qty").value || 0,
           price: $.getElementById("modal-new-price").value || "0",
           date: $.getElementById("modal-new-date").value || "1404/01/01",
@@ -707,4 +710,8 @@ fetch("http://localhost:3000/products")
       showRows(filtered);
       renderPagination(1);
     });
-  });
+  } catch (err) {
+    console.error("خطا در فچ:", err);
+  }
+}
+init();
