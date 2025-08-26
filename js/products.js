@@ -236,8 +236,12 @@ fetch("http://localhost:3000/products")
           .catch((err) => console.error(err));
       });
     }
-    function showModifyNewPage() {
+    function showModifyNewPage(id) {
       console.log("showModifyNewPage");
+      console.log(id);
+
+      localStorage.setItem("selectedItem", `${id}`);
+      window.location.href = "/editFormPage.html";
     }
     function removeRowHandler(id) {
       console.log("removeRowHandler");
@@ -341,7 +345,9 @@ fetch("http://localhost:3000/products")
       newPageModifyBtn.textContent = "صفحه";
       newPageModifyBtn.classList.add("action__btn");
       // newPageModifyBtn.classList.add(".modify__row__btn");
-      newPageModifyBtn.addEventListener("click", showModifyNewPage);
+      newPageModifyBtn.addEventListener("click", () =>
+        showModifyNewPage(item.id)
+      );
       tdActionBtns.appendChild(newPageModifyBtn);
       /*remove row*/
       const removeRowBtn = document.createElement("button");

@@ -2,19 +2,17 @@
   "products": [
     {
       "id": "1",
-      "image": "/public/assets/icons/product-test-img.svg",
-      "name": "لپ‌تاپ",
-      "count": "0",
-      "price": "78235000",
-      "date": "1403/10/07",
-      "inStock": "درحال تامین"
+      "name": "هارد اکسترنال",
+      "count": "100",
+      "price": "50000000",
+      "date": "1404/06/04",
+      "inStock": "بله"
     },
     {
       "id": "2",
-      "image": "/public/assets/icons/product-test-img.svg",
-      "name": "ماوس",
-      "count": 0,
-      "price": 8600000,
+      "name": "ماوس lenovo",
+      "count": "0",
+      "price": "8600000",
       "date": "1404/02/19",
       "inStock": "خیر"
     },
