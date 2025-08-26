@@ -1,0 +1,25 @@
+.edit-form__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit__form {
+  border: 3px solid var(--color-theme-link-active);
+  border-radius: 4px;
+}
+.edit__form form {
+  display: flex;
+  gap: 48px;
+  flex-direction: column;
+  direction: rtl;
+  padding: 48px;
+}
+.form__btns__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.form__btns__wrapper button {
+  width: 80px;
+  height: 32px;
+}

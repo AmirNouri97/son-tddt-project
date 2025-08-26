@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" dir="rtl" lang="fa-IR" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/public/assets/images/logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/editFormPage.css" />
+    <title>TDDT</title>
+  </head>
+  <body>
+    <div id="header-placeHolder"></div>
+    <main class="edit-form__wrapper">
+        <div class="edit__form">
+            <form action="#" id="modify-form__page">
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر نام محصول -->
+                <label for="modal-name" class="edit__modal--label"
+                  >نام محصول</label
+                >
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-name__page"
+                  required
+                />
+              </div>
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر عکس محصول -->
+                <label for="modal-img" class="edit__modal--label"
+                  >عکس محصول</label
+                >
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="edit__modal--input"
+                  id="modal-img__page"
+                />
+              </div>
+
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر تعداد محصول -->
+                <label for="modal-qty" class="edit__modal--label">تعداد</label
+                ><input
+                  type="number"
+                  class="edit__modal--input"
+                  id="modal-qty"
+                  required
+                  min="0"
+                />
+                <!-- تغییر قیمت محصول -->
+                <label for="modal-price" class="edit__modal--label">قیمت</label>
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-price__page"
+                  required
+                />
+              </div>
+              <div class="modal__wrapper__inputs">
+                <!-- تغییر تاریخ محصول -->
+                <label for="modal-date" class="edit__modal--label">تاریخ</label>
+                <input
+                  type="text"
+                  class="edit__modal--input"
+                  id="modal-date__page"
+                  required
+                />
+                <!-- تغییر موجود بودن محصول -->
+                <label for="modal-available" class="edit__modal--label"
+                  >موجودی</label
+                >
+                <select name="" id="modal-available__page">
+                  <option value="بله">بله</option>
+                  <option value="خیر">خیر</option>
+                  <option value="درحال تامین">درحال تامین</option>
+                </select>
+              </div>
+
+              <h2>آیا از تغییر این ردیف مطمئن هستید؟</h2>
+              <div class="form__btns__wrapper">
+                <button type="submit" class="edit__modal--confirm__btn">
+                  بله
+                </button>
+                <button class="edit__modal--cancel__btn">انصراف</button>
+              </div>
+            </form>
+    </main>
+     
+      
+      
+    <div class="overlay hidden"></div>
+    <div id="footer-placeHolder"></div>
+  </body>
+  <script src="./js/script.js"></script>
+  <!-- <script src="./js/darkTheme.js"></script> -->
+  <script src="./js/editFormPage.js"></script>
+</html>
