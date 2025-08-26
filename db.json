@@ -3,18 +3,20 @@
     {
       "id": "1",
       "name": "هارد اکسترنال",
-      "count": "100",
+      "inStock": "بله",
       "price": "50000000",
+      "count": "0",
       "date": "1404/06/04",
-      "inStock": "بله"
+      "image": "/public/assets/icons/product-test-img.svg"
     },
     {
       "id": "2",
       "name": "ماوس lenovo",
-      "count": "0",
+      "inStock": "خیر",
       "price": "8600000",
+      "count": "0",
       "date": "1404/02/19",
-      "inStock": "خیر"
+      "image": "/public/assets/icons/product-test-img.svg"
     },
     {
       "id": "3",
@@ -284,6 +286,15 @@
       "count": "3",
       "price": "100000",
       "date": "1404/05/05",
+      "inStock": "بله"
+    },
+    {
+      "id": "33",
+      "name": "لگو",
+      "image": "/public/assets/icons/product-test-img.svg",
+      "count": "100",
+      "price": "20000",
+      "date": "1404/01/01",
       "inStock": "بله"
     }
   ]

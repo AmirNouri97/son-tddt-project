@@ -23,26 +23,34 @@ window.addEventListener("DOMContentLoaded", () => {
 const editFormConfirmBtn = document.querySelector(".edit__form--confirm__btn");
 const editFormCancelBtn = document.querySelector(".edit__form--cancel__btn");
 editFormConfirmBtn.addEventListener("click", () => {
-  const changedItem = {
-    id: itemId,
-    name: formNameInputElem.value,
-    count: formQtyInputElem.value,
-    price: formPriceInputElem.value,
-    date: formDateInputElem.value,
-    inStock: formAvailableInputElem.value,
-  };
-  console.log(changedItem);
-  fetch(`http://localhost:3000/products/${itemId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(changedItem),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      window.location.href = "table.html";
-    });
+  if (
+    formNameInputElem.value &&
+    formQtyInputElem.value &&
+    formPriceInputElem.value &&
+    formDateInputElem.value &&
+    formAvailableInputElem.value
+  ) {
+    const changedItem = {
+      id: itemId,
+      name: formNameInputElem.value,
+      count: formQtyInputElem.value,
+      price: formPriceInputElem.value,
+      date: formDateInputElem.value,
+      inStock: Number(formQtyInputElem.value) === 0 ? "خیر" : "بله",
+    };
+    console.log(changedItem);
+    fetch(`http://localhost:3000/products/${itemId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(changedItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "table.html";
+      });
+  }
 });
 editFormCancelBtn.addEventListener("click", () => {
   document

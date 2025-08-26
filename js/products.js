@@ -143,33 +143,43 @@ fetch("http://localhost:3000/products")
         const formattedPrice = Number(priceInput).toLocaleString("fa-IR");
         // const formattedPrice = Number(priceInput).toLocaleString("en-US");
         console.log(formattedPrice);
+        if (
+          document.getElementById("modal-name").value &&
+          document.getElementById("modal-qty").value &&
+          document.getElementById("modal-price").value &&
+          document.getElementById("modal-date").value &&
+          document.getElementById("modal-available").value
+        ) {
+          const changedItem = {
+            id: id,
+            name: document.getElementById("modal-name").value,
+            inStock:
+              Number(document.getElementById("modal-qty").value) === 0
+                ? "بله"
+                : "خیر",
+            price: document.getElementById("modal-price").value,
+            count: document.getElementById("modal-qty").value,
+            date: document.getElementById("modal-date").value,
+            image:
+              document.getElementById("modal-img").value ||
+              "/public/assets/icons/product-test-img.svg",
+          };
 
-        const changedItem = {
-          id: id,
-          name: document.getElementById("modal-name").value,
-          inStock: document.getElementById("modal-available").value,
-          price: document.getElementById("modal-price").value,
-          count: document.getElementById("modal-qty").value,
-          date: document.getElementById("modal-date").value,
-          image:
-            document.getElementById("modal-img").value ||
-            "/public/assets/icons/product-test-img.svg",
-        };
-
-        fetch(`http://localhost:3000/products/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(changedItem),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("updated");
-            document.querySelector(".overlay").classList.add("hidden");
-            document.querySelector(".edit__modal").classList.add("hidden");
+          fetch(`http://localhost:3000/products/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(changedItem),
           })
-          .catch((err) => console.error(err));
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("updated");
+              document.querySelector(".overlay").classList.add("hidden");
+              document.querySelector(".edit__modal").classList.add("hidden");
+            })
+            .catch((err) => console.error(err));
+        }
       });
       //cancel
       cancelBtn.addEventListener("click", () => {
@@ -209,31 +219,43 @@ fetch("http://localhost:3000/products")
       });
 
       SideBarConfirmBtn.addEventListener("click", () => {
-        const changedItem = {
-          id: id,
-          image:
-            document.getElementById("sideBar-img").value ||
-            "/public/assets/icons/product-test-img.svg",
-          name: document.getElementById("sideBar-name").value,
-          count: document.getElementById("sideBar-qty").value,
-          price: document.getElementById("sideBar-price").value,
-          date: document.getElementById("sideBar-date").value,
-          inStock: document.getElementById("sideBar-available").value,
-        };
-        fetch(`http://localhost:3000/products/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(changedItem),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("updated");
-            document.querySelector(".overlay").classList.add("hidden");
-            sidebar.classList.remove("sideBar__show");
+        const qty = Number(document.getElementById("sideBar-qty").value);
+        if (
+          sideBarName.value &&
+          sideBarQty.value &&
+          sideBarPrice.value &&
+          sideBarDate.value &&
+          sideBarAvailable.value
+        ) {
+          const changedItem = {
+            id: id,
+            image:
+              document.getElementById("sideBar-img").value ||
+              "/public/assets/icons/product-test-img.svg",
+            name: document.getElementById("sideBar-name").value,
+            count: document.getElementById("sideBar-qty").value,
+            price: document.getElementById("sideBar-price").value,
+            date: document.getElementById("sideBar-date").value,
+            inStock:
+              qty === 0
+                ? "خیر"
+                : document.getElementById("sideBar-available").value,
+          };
+          fetch(`http://localhost:3000/products/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(changedItem),
           })
-          .catch((err) => console.error(err));
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("updated");
+              document.querySelector(".overlay").classList.add("hidden");
+              sidebar.classList.remove("sideBar__show");
+            })
+            .catch((err) => console.error(err));
+        }
       });
     }
     function showModifyNewPage(id) {
