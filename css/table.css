@@ -5,13 +5,7 @@ main {
 .table__main {
   width: 1200px;
 }
-.table__title {
-  padding: 20px;
-  text-align: center;
-  color: var(--color-theme-text);
-  font-size: 20px;
-  font-weight: 600;
-}
+
 table {
   width: 100%;
   min-width: 800px;
@@ -170,7 +164,7 @@ tbody tr:nth-child(even) {
   color: var(--color-theme-text);
   font-size: 20px;
   font-weight: 600;
-  width: 60%;
+  width: 62%;
 }
 .table__qty {
   padding: 20px;
@@ -214,7 +208,6 @@ svg {
   padding: 4px 6px;
   margin: 0 3px;
   border-radius: 4px;
-  /* background-color: var(--color-modify); */
   outline: none;
   border: 0.8px solid;
 }
@@ -236,10 +229,9 @@ svg {
   background-color: var(--color-white);
   justify-content: center;
   border-radius: 5px;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
   gap: 32px;
-  border: 10px solid var(--color-theme-link-active);
+  border: 8px solid var(--color-theme-link-active);
 }
 .modal__btns__wrapper {
   display: flex;
@@ -260,7 +252,7 @@ svg {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--color-overlay);
   backdrop-filter: blur(3px);
   z-index: 5;
 }
@@ -301,8 +293,8 @@ select {
   text-align: center;
   background-color: var(--color-white);
   justify-content: center;
+  border: 6px solid var(--color-theme-link-active);
   border-radius: 5px;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
   gap: 32px;
   transition: all 300ms ease;
@@ -314,7 +306,7 @@ select {
   row-gap: 16px;
 }
 #modify-form-sideBar h2 {
-  border-top: 2px solid black;
+  border-top: 2px solid var(--color-theme-link-active);
   padding-top: 16px;
 }
 .edit__sideBar.sideBar__show {
@@ -323,9 +315,9 @@ select {
 .table__add__new__item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 15%;
-  padding: 10px 16px;
+  justify-content: space-between;
+  width: 200px;
+  padding: 8px 12px;
   background-color: var(--color-theme-link-active);
   border-radius: 8px;
   cursor: pointer;
@@ -339,4 +331,56 @@ select {
 }
 .modal__btns__wrapper button:last-child:hover {
   background-color: var(--color-red);
+}
+
+.menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.table__add__new__item__list {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: var(--color-theme);
+  list-style: none;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+
+.table__add__new__item__list.show {
+  max-height: 200px;
+  opacity: 1;
+}
+.table__add__new__item__list li {
+  color: var(--color-theme-text);
+  background-color: var(--color-theme-wrapper);
+  padding: 6px 12px;
+  border: 1px solid var(--color-gray);
+  border-radius: 4px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+.table__add__new__item__list li:hover {
+  color: var(--color-black);
+  background-color: var(--color-theme-link-active);
+}
+
+.modal h2 {
+  padding-top: 16px;
+  border-top: 2px solid var(--color-theme-link-active);
+}
+.table__add__new__item__icon {
+  width: 20px;
+  height: 20px;
+  transition: all 200ms ease;
+}
+.table__add__new__item__icon img {
+  transition: all 200ms ease;
 }
