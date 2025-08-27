@@ -21,6 +21,7 @@ async function init() {
     const lastPageBtn = $.querySelector(".last__page");
     const thGroup = $.querySelectorAll("thead tr th");
     const sortBtns = $.querySelectorAll(".sort-arrow");
+    const addRowIcon = $.querySelector(".table__add__new__item__icon");
     let filtered;
     let sortOrder = "";
     const productsQTY = products.length;
@@ -83,9 +84,37 @@ async function init() {
       uploadedImageSideBar = base64;
     });
     tableAddNewItemBtn.addEventListener("click", () => {
-      console.log(products[products.length - 1].id);
+      const ulElem = $.querySelector(".table__add__new__item__list");
 
-      addNewItem(String(Number(products[products.length - 1].id) + 1));
+      ulElem.classList.toggle("show");
+      if (ulElem.classList.contains("show")) {
+        $.querySelector(".table__add__new__item__icon img").style.transform =
+          "rotateX(180deg)";
+      } else {
+        $.querySelector(".table__add__new__item__icon img").style.transform =
+          "rotateX(0deg)";
+      }
+      let lastItemId = products[products.length - 1].id;
+      const openModalORSideBar = ulElem.querySelectorAll("li");
+
+      openModalORSideBar.forEach((li) =>
+        li.addEventListener("click", (e) => {
+          selectedLiElem = e.currentTarget.getAttribute("data-value");
+          ulElem.classList.remove("show");
+          switch (selectedLiElem) {
+            case "open-modal":
+              // console.log("modal");
+              addNewItem(lastItemId);
+              break;
+            case "open-sideBar":
+              showModifySideBar(String(Number(lastItemId) + 1));
+              console.log("side");
+              break;
+          }
+        })
+      );
+
+      // addNewItem(String(Number(products[products.length - 1].id) + 1));
     });
     function addNewItem(lastId) {
       $.querySelector(".add__modal").classList.remove("hidden");
@@ -93,6 +122,7 @@ async function init() {
 
       const addModalConfirmBtn = $.querySelector(".add__modal--confirm__btn");
       const addModalCancelBtn = $.querySelector(".add__modal--cancel__btn");
+      // console.log(typeof +lastId);
 
       changeImgToBase64(
         "modal-new-img",
@@ -105,7 +135,7 @@ async function init() {
         console.log("mmd");
 
         const newItem = {
-          id: String(lastId),
+          id: String(+lastId + 1),
           name: $.getElementById("modal-new-name").value || "نامشخص",
           image:
             uploadedImageNew || "/public/assets/icons/product-test-img.svg",
@@ -124,13 +154,13 @@ async function init() {
             $.querySelector(".add__modal").classList.add("hidden");
             document.querySelector(".overlay").classList.add("hidden");
             console.log(data);
-            addModalConfirmBtn.removeEventListener("click", handleConfirm);
+            // addModalConfirmBtn.removeEventListener("click", handleConfirm);
           });
       });
       addModalCancelBtn.addEventListener("click", () => {
         $.querySelector(".add__modal").classList.add("hidden");
         document.querySelector(".overlay").classList.add("hidden");
-        addModalCancelBtn.removeEventListener("click", handleConfirm);
+        // addModalCancelBtn.removeEventListener("click", handleConfirm);
       });
     }
     function showRows(data = copyProducts) {
@@ -263,44 +293,87 @@ async function init() {
         uploadedImage = base64;
       });
       let selectedItem = products.filter((item) => item.id === id);
-      sideBarName.value = selectedItem[0].name;
-      sideBarQty.value = selectedItem[0].count;
-      sideBarPrice.value = selectedItem[0].price;
-      sideBarDate.value = selectedItem[0].date;
-      sideBarAvailable.value = selectedItem[0].inStock;
+      const sideBarMsg = $.querySelector("#modify-form-sideBar h2");
+      console.log(sideBarMsg);
+
+      if (selectedItem.length > 0) {
+        sideBarMsg.textContent = "آیا از تغییر این ردیف مطمئن هستید؟";
+        sideBarName.value = selectedItem[0].name;
+        sideBarQty.value = selectedItem[0].count;
+        sideBarPrice.value = selectedItem[0].price;
+        sideBarDate.value = selectedItem[0].date;
+        sideBarAvailable.value = selectedItem[0].inStock;
+      } else {
+        sideBarMsg.textContent = "آیا از اضافه نمودن این ایتم مطمئن هستید؟";
+        sideBarName.value = "";
+        sideBarQty.value = "";
+        sideBarPrice.value = 0;
+        sideBarDate.value = "";
+        sideBarAvailable.value = null;
+      }
 
       sideBarCancelBtn.addEventListener("click", () => {
         sidebar.classList.remove("sideBar__show");
         document.querySelector(".overlay").classList.add("hidden");
       });
 
-      SideBarConfirmBtn.addEventListener("click", () => {
-        const qty = Number(document.getElementById("sideBar-qty").value);
-        if (
-          sideBarName.value &&
-          sideBarQty.value &&
-          sideBarPrice.value &&
-          sideBarDate.value &&
-          sideBarAvailable.value
-        ) {
-          const changedItem = {
-            id: id,
-            image: uploadedImage || "/public/assets/icons/product-test-img.svg",
-            name: document.getElementById("sideBar-name").value,
-            count: document.getElementById("sideBar-qty").value,
-            price: document.getElementById("sideBar-price").value,
-            date: document.getElementById("sideBar-date").value,
+      SideBarConfirmBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (selectedItem.length > 0) {
+          const qty = Number(document.getElementById("sideBar-qty").value);
+          if (
+            sideBarName.value &&
+            sideBarQty.value &&
+            sideBarPrice.value &&
+            sideBarDate.value &&
+            sideBarAvailable.value
+          ) {
+            const changedItem = {
+              id: id,
+              image:
+                uploadedImage || "/public/assets/icons/product-test-img.svg",
+              name: document.getElementById("sideBar-name").value,
+              count: document.getElementById("sideBar-qty").value,
+              price: document.getElementById("sideBar-price").value,
+              date: document.getElementById("sideBar-date").value,
+              inStock:
+                qty === 0
+                  ? "خیر"
+                  : document.getElementById("sideBar-available").value,
+            };
+            fetch(`http://localhost:3000/products/${id}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(changedItem),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("updated");
+                document.querySelector(".overlay").classList.add("hidden");
+                sidebar.classList.remove("sideBar__show");
+              })
+              .catch((err) => console.error(err));
+          }
+        } else {
+          const newItem = {
+            id: String(id),
+            name: $.getElementById("sideBar-name").value || "نامشخص",
+            image:
+              uploadedImageNew || "/public/assets/icons/product-test-img.svg",
+            count: $.getElementById("sideBar-qty").value || 0,
+            price: $.getElementById("sideBar-price").value || "0",
+            date: $.getElementById("sideBar-date").value || "1404/01/01",
             inStock:
-              qty === 0
-                ? "خیر"
-                : document.getElementById("sideBar-available").value,
+              $.getElementById("sideBar-available").value || "درحال تامین",
           };
-          fetch(`http://localhost:3000/products/${id}`, {
-            method: "PUT",
+          fetch(`http://localhost:3000/products`, {
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(changedItem),
+            body: JSON.stringify(newItem),
           })
             .then((res) => res.json())
             .then((data) => {
